@@ -1,0 +1,155 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\File;
+use Modules\$MODULE$\Support\ModuleInfo;
+use Config;
+
+class $CLASS$ extends ServiceProvider
+{
+    /**
+     * @var string $moduleName
+     */
+    protected string $moduleName = '$MODULE$';
+
+    /**
+     * @var string $moduleNameLower
+     */
+    protected string $moduleNameLower = '$LOWER_NAME$';
+
+
+     /**
+      * Get the services provided by the provider.
+      *
+      * @return array
+      */
+    public function provides():array
+    {
+        return [];
+    }
+
+    /**
+     * Boot the application events.
+     *
+     * @return void
+     */
+    public function boot() : void
+    {
+        $this->registerTranslations();
+        $this->registerConfig();
+        $this->registerViews();
+        $this->registerHelpers();
+        $this->registerCommands();
+        $this->loadMigrationsFrom(module_path(ModuleInfo::name(), '$MIGRATIONS_PATH$'));
+    }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register(): void
+    {
+        $this->app->register(RouteServiceProvider::class);
+    }
+
+    /**
+     * Register the helpers.
+     *
+     * @return void
+     */
+    protected function registerHelpers(): void
+    {
+        foreach (glob(__DIR__.'/../Helpers/*.php') as $filename) {
+            require_once $filename;
+        }
+    }
+
+     /**
+     * Dynamically Register Commands.
+     *
+     * @return void
+     */
+    public function registerCommands(): void
+       {
+           if (!$this->app->runningInConsole()) {
+               return;
+           }
+           $commandPath = __DIR__ . '/../Console';
+            $commands = collect(File::allFiles($commandPath))
+                 ->map(function ($file) {
+                     $class = 'Modules\\' . $this->moduleName . '\\Console\\' . $file->getFilenameWithoutExtension();
+                     return $class;
+                })
+                ->filter(function ($class) {
+                    return class_exists($class);
+                })
+                ->values()
+                ->all();
+            $this->commands($commands);
+        }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig(): void
+    {
+        $this->publishes([
+            module_path(ModuleInfo::name(), '$PATH_CONFIG$/config.php') => config_path( ModuleInfo::nameLower(). '.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            module_path(ModuleInfo::name(), '$PATH_CONFIG$/config.php'),  ModuleInfo::nameLower()
+        );
+    }
+
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews(): void
+    {
+        $viewPath = resource_path('views/modules/' . ModuleInfo::nameLower());
+        $sourcePath = module_path(ModuleInfo::name(), '$PATH_VIEWS$');
+        $this->publishes([
+            $sourcePath => $viewPath
+        ], ['views',  ModuleInfo::nameLower() . '-module-views']);
+        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]),  ModuleInfo::nameLower());
+    }
+
+    /**
+     * Register translations.
+     *
+     * @return void
+     */
+    public function registerTranslations(): void
+    {
+        $langPath = resource_path('lang/modules/' .  ModuleInfo::nameLower());
+
+        if (is_dir($langPath)) {
+            $this->loadTranslationsFrom($langPath,  ModuleInfo::nameLower());
+        } else {
+            $this->loadTranslationsFrom(module_path(ModuleInfo::name(), '$PATH_LANG$'), ModuleInfo::nameLower());
+        }
+    }
+
+    /**
+     * Regsiter View Paths
+     * @return array
+     */
+    private function getPublishableViewPaths(): array
+    {
+        $paths = [];
+        foreach (Config::get('view.paths') as $path) {
+            if (is_dir($path . '/modules/' . ModuleInfo::nameLower())) {
+                $paths[] = $path . '/modules/' . ModuleInfo::nameLower();
+            }
+        }
+        return $paths;
+    }
+}

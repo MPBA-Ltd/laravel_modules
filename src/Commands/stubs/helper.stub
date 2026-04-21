@@ -1,0 +1,12 @@
+<?php
+use Modules\$MODULE$\Support\ModuleInfo;
+
+if (! function_exists('$MODULE_LOWER$_feature_enabled')) {
+    /**
+     * Check if a feature is enabled in the config.
+     */
+    function $MODULE_LOWER$_feature_enabled(string $key): bool
+    {
+        return (bool) config(ModuleInfo::nameLower().".features.{$key}", false);
+    }
+}
