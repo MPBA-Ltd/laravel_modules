@@ -44,7 +44,7 @@ class SupportMakeCommand extends GeneratorCommand
     {
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
-        return (new Stub('/moduleinfo.stub', [
+        return (new Stub('/Moduleinfo.stub', [
             'NAMESPACE' => $this->getClassNamespace($module),
             'MODULE' => $this->getModuleName(),
         ]))->render();
@@ -59,7 +59,7 @@ class SupportMakeCommand extends GeneratorCommand
         $pathName = Str::studly($this->option('support'));
 
         if (Str::contains(strtolower($pathName), 'support') === false) {
-            $pathName .= 'moduleInfo';
+            $pathName .= 'ModuleInfo';
         }
 
         return $pathName;
@@ -76,7 +76,7 @@ class SupportMakeCommand extends GeneratorCommand
 
     protected function getFileName()
     {
-        return 'moduleInfo';
+        return 'ModuleInfo';
     }
 
     /**

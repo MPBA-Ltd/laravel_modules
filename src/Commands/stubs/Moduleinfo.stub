@@ -2,7 +2,7 @@
 
 namespace $NAMESPACE$;
 
-class moduleInfo
+class ModuleInfo
 {
     protected static string $moduleName =  '$MODULE$';
 
