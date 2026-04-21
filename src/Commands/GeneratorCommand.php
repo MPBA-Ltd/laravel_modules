@@ -5,6 +5,7 @@ namespace mpba\Modules\Commands;
 use Illuminate\Console\Command;
 use mpba\Modules\Exceptions\FileAlreadyExistException;
 use mpba\Modules\Generators\FileGenerator;
+use mpba\Modules\Module;
 
 abstract class GeneratorCommand extends Command
 {
@@ -77,7 +78,7 @@ abstract class GeneratorCommand extends Command
     /**
      * Get class namespace.
      *
-     * @param  \mpba\Modules\Module  $module
+     * @param  Module  $module
      * @return string
      */
     public function getClassNamespace($module)

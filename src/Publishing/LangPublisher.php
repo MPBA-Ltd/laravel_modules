@@ -2,7 +2,7 @@
 
 namespace mpba\Modules\Publishing;
 
-use laraveluse mpba\Modules\Support\Config\GenerateConfigReader;
+use  mpba\Modules\Support\Config\GenerateConfigReader;
 
 class LangPublisher extends Publisher
 {

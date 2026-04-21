@@ -2,7 +2,7 @@
 
 namespace mpba\Modules\Process;
 
-use laraveluse mpba\Modules\Module;
+use mpba\Modules\Module;
 
 class Updater extends Runner
 {

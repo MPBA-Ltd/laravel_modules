@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use mpba\Modules\Contracts\ActivatorInterface;
 use mpba\Modules\FileRepository;
+use mpba\Modules\Module;
 use mpba\Modules\Support\Config\GenerateConfigReader;
 use mpba\Modules\Support\Stub;
 
@@ -51,7 +52,7 @@ class ModuleGenerator extends Generator
     /**
      * The module instance.
      *
-     * @var \mpba\Modules\Module
+     * @var Module
      */
     protected $module;
 
@@ -216,7 +217,7 @@ class ModuleGenerator extends Generator
     /**
      * Get the module instance.
      *
-     * @return \mpba\Modules\Module
+     * @return Module
      */
     public function getModule()
     {
