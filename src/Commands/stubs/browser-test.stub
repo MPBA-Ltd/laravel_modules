@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace $NAMESPACE$;
+
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+/**
+ * Class $CLASS$
+ */
+class $CLASS$ extends DuskTestCase
+{
+    /**
+     * A basic browser test example.
+     *
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function testExample(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->assertPathIs('/');
+        });
+    }
+}

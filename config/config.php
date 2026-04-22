@@ -121,6 +121,7 @@ return [
             'views' => ['path' => 'Resources/views', 'generate' => true],
             'test' => ['path' => 'Tests/Unit', 'generate' => true],
             'test-feature' => ['path' => 'Tests/Feature', 'generate' => true],
+            'test-browser' => ['path' => 'Tests/Browser', 'generate' => true,],
             'repository' => ['path' => 'Repositories', 'generate' => false],
             'event' => ['path' => 'Events', 'generate' => false],
             'listener' => ['path' => 'Listeners', 'generate' => false],
