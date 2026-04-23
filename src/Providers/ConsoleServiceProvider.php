@@ -42,6 +42,7 @@ use mpba\Modules\Commands\SeedCommand;
 use mpba\Modules\Commands\SeedMakeCommand;
 use mpba\Modules\Commands\SetupCommand;
 use mpba\Modules\Commands\SupportMakeCommand;
+use mpba\Modules\Commands\SyncModuleStatusesCommand;
 use mpba\Modules\Commands\TestMakeCommand;
 use mpba\Modules\Commands\TraitMakeCommand;
 use mpba\Modules\Commands\UnUseCommand;
@@ -100,6 +101,7 @@ class ConsoleServiceProvider extends ServiceProvider
         TestMakeCommand::class,
         ComponentMakeCommand::class,
         TraitMakeCommand::class,
+        SyncModuleStatusesCommand::class,
     ];
 
     /**
