@@ -7,7 +7,8 @@ namespace mpba\Modules\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Modules\DevelopmentSupport\Entities\ModuleStatus;
+use mpba\Modules\DevelopmentSupport\Entities\ModuleStatus;
+
 
 /**
  * Class SyncModuleStatusesCommand
@@ -22,7 +23,7 @@ class SyncModuleStatusesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'modules:sync-statuses';
+    protected $signature = 'module:sync-statuses';
 
     /**
      * The console command description.
