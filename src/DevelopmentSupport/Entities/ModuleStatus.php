@@ -29,6 +29,11 @@ class ModuleStatus extends Model
         'description',
         'version',
         'sort_order',
+        'icon',
+        'category',
+        'vendor_type',
+        'author',
+        'notes',
     ];
 
     /**

@@ -567,3 +567,12 @@ All Notable changes to `laravel-modules` will be documented in this file.
 ## 0.1 - 2016-06-27
 
 Initial release
+
+## 2026-07-01 - Module Control Administration Enhancements
+
+- Added professional module control dashboard cards for installed, enabled, disabled, updates available, and missing dependency states.
+- Added searchable, sortable, paginated module index with database-only descriptions, version metadata, icons, categories, vendor type, author and last-updated details.
+- Added filter support for all, enabled, disabled, core, optional, MPBA, third-party, updates, and missing dependencies.
+- Added bulk enable/disable actions with dependency safety checks.
+- Added module detail developer cards for dependencies, dependents, README, changelog, routes, migrations, models, controllers, providers and package metadata.
+- Added module_statuses metadata columns for icon, category, vendor type, author and notes.
