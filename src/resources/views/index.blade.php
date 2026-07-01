@@ -1,17 +1,44 @@
 <x-layouts.app :title="__('Module Control')">
-    <section class="overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-800 px-8 py-8 shadow-sm sm:px-10">
-        <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+    <section class="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 shadow-sm">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(34,211,238,0.22),transparent_32%),radial-gradient(circle_at_75%_80%,rgba(16,185,129,0.16),transparent_30%)]"></div>
+        <div class="relative grid gap-6 px-6 py-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center lg:py-7 xl:grid-cols-[minmax(0,1fr)_24rem]">
             <div class="min-w-0">
-                <p class="text-xs font-black uppercase tracking-[0.34em] text-cyan-300">{{ __('Module Control') }}</p>
-                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
-                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200">
+                <p class="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">{{ __('Platform Administration') }}</p>
+                <h1 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">{{ __('Module Control') }}</h1>
+                <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-200 sm:text-base">
                     {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
                 </p>
             </div>
 
-            <div class="flex shrink-0 items-center justify-end">
-                <div class="inline-flex h-24 w-24 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur">
-                    <i class="fa-solid fa-puzzle-piece text-4xl" aria-hidden="true"></i>
+            <div class="hidden lg:block">
+                <div class="relative ml-auto max-w-sm rounded-2xl border border-white/10 bg-white/[0.08] p-4 shadow-2xl shadow-slate-950/40 ring-1 ring-white/10 backdrop-blur">
+                    <div class="flex items-center justify-between gap-3">
+                        <span class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-300/25">
+                            <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
+                        </span>
+                        <span class="rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-cyan-100 ring-1 ring-white/10">
+                            {{ __('Database backed') }}
+                        </span>
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-3 gap-3">
+                        <div class="rounded-xl border border-white/10 bg-slate-950/40 p-3">
+                            <div class="text-2xl font-black text-white">{{ $stats['installed'] }}</div>
+                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-slate-300">{{ __('Installed') }}</div>
+                        </div>
+                        <div class="rounded-xl border border-emerald-300/20 bg-emerald-500/10 p-3">
+                            <div class="text-2xl font-black text-emerald-100">{{ $stats['enabled'] }}</div>
+                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-emerald-200/90">{{ __('Enabled') }}</div>
+                        </div>
+                        <div class="rounded-xl border border-red-300/20 bg-red-500/10 p-3">
+                            <div class="text-2xl font-black text-red-100">{{ $stats['disabled'] }}</div>
+                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-red-200/90">{{ __('Disabled') }}</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                        <div class="h-full rounded-full bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-400" style="width: {{ $stats['installed'] > 0 ? round(($stats['enabled'] / max(1, $stats['installed'])) * 100) : 0 }}%"></div>
+                    </div>
                 </div>
             </div>
         </div>
