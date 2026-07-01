@@ -1,30 +1,30 @@
 <x-layouts.app :title="$module['name'].' Module'">
     <section class="overflow-hidden rounded-[1.75rem] border border-blue-400/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-2xl shadow-slate-950/30 sm:p-10">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(28rem,38rem)] lg:items-start">
-            <div class="min-w-0">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(28rem,34rem)] lg:items-start">
+            <div class="min-w-0 lg:pt-1">
                 <p class="text-xs font-black uppercase tracking-[0.35em] text-cyan-300">{{ __('Module Control') }}</p>
-                <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} {{ __('Module') }}</h1>
-                <p class="mt-6 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
+                <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} {{ __('Module') }}</h1>
+                <p class="mt-5 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
                     {{ __('Database metadata, dependencies, developer information and activation controls.') }}
                 </p>
             </div>
 
-            <div class="space-y-6 lg:pt-1">
+            <div class="w-full justify-self-end space-y-6">
                 <div class="flex items-center justify-end gap-6">
-                    <div class="inline-flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+                    <div class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/60 bg-emerald-400/10 text-emerald-200 shadow-sm">
                         <i class="fa-solid {{ $module['icon'] ?: 'fa-chart-line' }} text-3xl" aria-hidden="true"></i>
                     </div>
 
-                    <div class="hidden h-16 w-px bg-white/15 sm:block"></div>
+                    <div class="hidden h-14 w-px bg-white/15 sm:block"></div>
 
                     <a href="{{ route('modules.control.index') }}" wire:navigate
-                       class="inline-flex min-h-16 items-center justify-center gap-3 rounded-2xl border border-emerald-400/60 bg-emerald-600/90 px-7 py-4 text-sm font-black text-white shadow-lg shadow-slate-950/20 transition hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+                       class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-400/60 bg-emerald-600/90 px-5 py-3 text-sm font-black text-white shadow-lg shadow-slate-950/20 transition hover:bg-emerald-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
                         <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
                         {{ __('Back to Module Control') }}
                     </a>
                 </div>
 
-                <div class="rounded-3xl border border-white/35 bg-white/[0.04] p-6 shadow-2xl shadow-slate-950/30 backdrop-blur">
+                <div class="rounded-[1.5rem] border border-white/25 bg-slate-950/20 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur">
                     <div class="grid grid-cols-2 divide-x divide-white/15">
                         <div class="pr-6">
                             <div class="text-xs font-black uppercase tracking-[0.2em] text-blue-100">{{ __('Status') }}</div>

@@ -1,21 +1,21 @@
 <x-layouts.app :title="__('Module Control')">
     <section class="overflow-hidden rounded-[1.75rem] border border-blue-400/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-2xl shadow-slate-950/30 sm:p-10">
         <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,36rem)] lg:items-start">
-            <div class="min-w-0">
+            <div class="min-w-0 lg:pt-1">
                 <p class="text-xs font-black uppercase tracking-[0.35em] text-cyan-300">{{ __('Platform Administration') }}</p>
-                <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
-                <p class="mt-6 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
+                <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
+                <p class="mt-5 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
                     {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
                 </p>
             </div>
 
-            <div class="rounded-3xl border border-white/35 bg-white/[0.04] p-6 shadow-2xl shadow-slate-950/30 backdrop-blur">
-                <div class="flex items-start justify-between gap-4">
-                    <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+            <div class="w-full justify-self-end rounded-[1.5rem] border border-white/25 bg-slate-950/20 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur">
+                <div class="flex items-start justify-between gap-5">
+                    <div class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/60 bg-emerald-400/10 text-emerald-200 shadow-sm">
                         <i class="fa-solid fa-puzzle-piece text-3xl" aria-hidden="true"></i>
                     </div>
 
-                    <span class="rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-white shadow-sm">
+                    <span class="rounded-full border border-white/35 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-white shadow-sm">
                         {{ __('Database backed') }}
                     </span>
                 </div>
@@ -257,7 +257,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable
