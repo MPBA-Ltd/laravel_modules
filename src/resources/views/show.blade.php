@@ -195,9 +195,9 @@
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer files</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Routes, migrations, models, controllers and providers discovered for this module.</p>
                         </div>
-                        <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
-                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/30 text-white/95 shadow-sm shadow-black/20 transition duration-200 group-hover:bg-emerald-500/40 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl leading-none"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl leading-none"></i>
                         </span>
                     </summary>
 
@@ -229,9 +229,9 @@
                                 <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">README preview</h2>
                                 <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Open to inspect the module README where available.</p>
                             </div>
-                            <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
-                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
+                            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/30 text-white/95 shadow-sm shadow-black/20 transition duration-200 group-hover:bg-emerald-500/40 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl leading-none"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl leading-none"></i>
                         </span>
                         </summary>
 
@@ -254,9 +254,9 @@
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer information</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Path, namespace, composer, git and database metadata.</p>
                         </div>
-                        <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
-                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
+                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/30 text-white/95 shadow-sm shadow-black/20 transition duration-200 group-hover:bg-emerald-500/40 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl leading-none"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl leading-none"></i>
                         </span>
                     </summary>
 
