@@ -5,6 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="mpba\Modules\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="mpba\Modules\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/stubs/valid/Recipe" isTestSource="true" packagePrefix="Modules\Recipe\" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="mpba\Modules\" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="mpba\Modules\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="mpba\Modules\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="mpba\Modules\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/stubs/valid/Recipe" isTestSource="true" packagePrefix="Modules\Recipe\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/stubs/valid/Recipe" isTestSource="true" packagePrefix="Modules\Recipe\" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
