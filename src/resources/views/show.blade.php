@@ -211,8 +211,27 @@
                     </div>
 
                     <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                        <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Changelog preview</h2>
-                        <pre class="mt-4 max-h-96 overflow-auto whitespace-pre-wrap rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-xs leading-6 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">{{ $module['changelog'] ?: 'No changelog found.' }}</pre>
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Changelog</h2>
+                                <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                                    Latest module changes from changelog.yaml, CHANGELOG.md, or CHANGELOG where available.
+                                </p>
+                            </div>
+                            @if (! empty($module['changelog']))
+                                <span class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                                    Available
+                                </span>
+                            @endif
+                        </div>
+
+                        @if (! empty($module['changelog']))
+                            <pre class="mt-4 max-h-96 overflow-auto whitespace-pre-wrap rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-xs leading-6 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">{{ $module['changelog'] }}</pre>
+                        @else
+                            <div class="mt-4 rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950/60 dark:text-zinc-400">
+                                No changelog found for this module.
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
