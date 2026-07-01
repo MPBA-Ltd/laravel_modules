@@ -31,23 +31,23 @@
     <style>
         .mc-hero {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(28rem, 37rem);
+            grid-template-columns: minmax(0, 1fr) minmax(26rem, 34rem);
             align-items: center;
-            gap: 2.6rem;
+            gap: 2rem;
             overflow: hidden;
-            border-radius: 1.5rem;
+            border-radius: 1.15rem;
             border: 1px solid rgba(45, 79, 137, .72);
             background:
                 radial-gradient(circle at 26% 18%, rgba(20, 184, 166, .18), transparent 31%),
                 linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
-            padding: 1.9rem 2.4rem;
+            padding: 1.25rem 2rem;
             box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
 
         .mc-hero-kicker {
-            margin: 0 0 .85rem;
+            margin: 0 0 .55rem;
             color: #5ef7d0;
-            font-size: .82rem;
+            font-size: .66rem;
             font-weight: 900;
             letter-spacing: .28em;
             text-transform: uppercase;
@@ -56,28 +56,28 @@
         .mc-hero-title {
             margin: 0;
             color: #fff;
-            font-size: clamp(2.15rem, 3.4vw, 3.35rem);
+            font-size: clamp(1.9rem, 3vw, 2.75rem);
             font-weight: 950;
             letter-spacing: -.045em;
             line-height: .98;
         }
 
         .mc-hero-subtitle {
-            margin: .95rem 0 0;
+            margin: .7rem 0 0;
             max-width: 42rem;
             color: rgba(241, 245, 249, .9);
-            font-size: clamp(1rem, 1.45vw, 1.2rem);
+            font-size: clamp(.92rem, 1.25vw, 1.05rem);
             font-weight: 700;
-            line-height: 1.5;
+            line-height: 1.42;
         }
 
         .mc-hero-metric-panel {
             justify-self: end;
-            width: min(100%, 36rem);
-            border-radius: 1.35rem;
+            width: min(100%, 33.5rem);
+            border-radius: 1.15rem;
             border: 1px solid rgba(148, 163, 184, .28);
             background: rgba(2, 6, 23, .36);
-            padding: 1.15rem 1.35rem;
+            padding: .9rem 1.05rem;
             box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 34px rgba(0,0,0,.22);
         }
 
@@ -86,20 +86,20 @@
             align-items: flex-start;
             justify-content: space-between;
             gap: 1.25rem;
-            margin-bottom: 1.35rem;
+            margin-bottom: .85rem;
         }
 
         .mc-hero-icon {
             display: inline-flex;
-            height: 3.55rem;
-            width: 3.55rem;
+            height: 3rem;
+            width: 3rem;
             align-items: center;
             justify-content: center;
-            border-radius: 1rem;
+            border-radius: .85rem;
             border: 1px solid rgba(94, 234, 212, .58);
             background: rgba(20, 184, 166, .12);
             color: #a7f3d0;
-            font-size: 1.3rem;
+            font-size: 1.08rem;
         }
 
         .mc-hero-pill {
@@ -108,9 +108,9 @@
             border-radius: 999px;
             border: 1px solid rgba(226, 232, 240, .35);
             background: rgba(255,255,255,.08);
-            padding: .58rem 1.15rem;
+            padding: .45rem .9rem;
             color: rgba(248, 250, 252, .94);
-            font-size: .72rem;
+            font-size: .66rem;
             font-weight: 950;
             letter-spacing: .2em;
             text-transform: uppercase;
@@ -123,7 +123,7 @@
         }
 
         .mc-hero-metric {
-            padding: .25rem 1.45rem;
+            padding: .15rem 1.15rem;
             border-left: 1px solid rgba(226, 232, 240, .25);
         }
 
@@ -134,7 +134,7 @@
 
         .mc-hero-metric-number {
             color: #fff;
-            font-size: 2.15rem;
+            font-size: 1.9rem;
             font-weight: 950;
             line-height: 1;
         }
@@ -143,9 +143,9 @@
         .mc-hero-metric-number.is-disabled { color: #fb7185; }
 
         .mc-hero-metric-label {
-            margin-top: .45rem;
+            margin-top: .35rem;
             color: rgba(226, 232, 240, .92);
-            font-size: .78rem;
+            font-size: .7rem;
             font-weight: 950;
             letter-spacing: .04em;
             text-transform: uppercase;
@@ -194,10 +194,10 @@
         }
 
         @media (max-width: 640px) {
-            .mc-hero { padding: 1.35rem; }
-            .mc-hero-metric-panel { padding: 1.2rem; }
+            .mc-hero { padding: 1.05rem; }
+            .mc-hero-metric-panel { padding: .9rem; }
             .mc-hero-metric { padding-inline: .8rem; }
-            .mc-hero-metric-number { font-size: 2rem; }
+            .mc-hero-metric-number { font-size: 1.75rem; }
         }
     </style>
 

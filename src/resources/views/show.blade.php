@@ -12,23 +12,23 @@
     <style>
         .mc-show-hero {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(29rem, 38rem);
+            grid-template-columns: minmax(0, 1fr) minmax(26rem, 34rem);
             align-items: start;
-            gap: 2.6rem;
+            gap: 2rem;
             overflow: hidden;
-            border-radius: 1.5rem;
+            border-radius: 1.35rem;
             border: 1px solid rgba(45, 79, 137, .72);
             background:
                 radial-gradient(circle at 24% 18%, rgba(20, 184, 166, .16), transparent 32%),
                 linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
-            padding: 1.9rem 2.4rem;
+            padding: 1.25rem 2rem;
             box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
 
         .mc-show-kicker {
-            margin: 0 0 .85rem;
+            margin: 0 0 .55rem;
             color: #5ef7d0;
-            font-size: .82rem;
+            font-size: .72rem;
             font-weight: 950;
             letter-spacing: .28em;
             text-transform: uppercase;
@@ -37,48 +37,48 @@
         .mc-show-title {
             margin: 0;
             color: #fff;
-            font-size: clamp(2.1rem, 3.3vw, 3.25rem);
+            font-size: clamp(1.9rem, 3vw, 2.75rem);
             font-weight: 950;
             letter-spacing: -.045em;
             line-height: .98;
         }
 
         .mc-show-subtitle {
-            margin: .95rem 0 0;
+            margin: .7rem 0 0;
             max-width: 41rem;
             color: rgba(241, 245, 249, .9);
-            font-size: clamp(1rem, 1.45vw, 1.18rem);
+            font-size: clamp(.92rem, 1.25vw, 1.05rem);
             font-weight: 700;
-            line-height: 1.5;
+            line-height: 1.42;
         }
 
         .mc-show-side {
             justify-self: end;
-            width: min(100%, 36rem);
+            width: min(100%, 33.5rem);
         }
 
         .mc-show-actions {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 1.45rem;
+            gap: 1rem;
         }
 
         .mc-show-icon {
             display: inline-flex;
-            height: 3.55rem;
-            width: 3.55rem;
+            height: 3rem;
+            width: 3rem;
             align-items: center;
             justify-content: center;
-            border-radius: 1rem;
+            border-radius: .85rem;
             border: 1px solid rgba(94, 234, 212, .58);
             background: rgba(20, 184, 166, .10);
             color: #a7f3d0;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
         }
 
         .mc-show-divider {
-            height: 3.55rem;
+            height: 3rem;
             width: 1px;
             background: rgba(226, 232, 240, .22);
         }
@@ -86,16 +86,16 @@
         .mc-show-back,
         .mc-show-back:visited {
             display: inline-flex;
-            min-height: 3.55rem;
-            min-width: 18rem;
+            min-height: 3rem;
+            min-width: 15.5rem;
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            border-radius: 1rem;
+            border-radius: .85rem;
             border: 1px solid rgba(16, 185, 129, .62);
             background: rgba(5, 150, 105, .06);
             color: #5ef7b7;
-            font-size: .95rem;
+            font-size: .86rem;
             font-weight: 950;
             text-decoration: none;
             transition: background .15s ease, border-color .15s ease, color .15s ease;
@@ -110,11 +110,11 @@
         }
 
         .mc-show-status-panel {
-            margin-top: 1.35rem;
-            border-radius: 1.25rem;
+            margin-top: .9rem;
+            border-radius: 1.05rem;
             border: 1px solid rgba(148, 163, 184, .26);
             background: rgba(2, 6, 23, .28);
-            padding: 1.1rem 1.35rem;
+            padding: .85rem 1.1rem;
             box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 14px 28px rgba(0,0,0,.18);
         }
 
@@ -124,7 +124,7 @@
         }
 
         .mc-show-stat {
-            padding: .2rem 1.5rem;
+            padding: .1rem 1.1rem;
             border-left: 1px solid rgba(226, 232, 240, .22);
         }
 
@@ -135,16 +135,16 @@
 
         .mc-show-stat-label {
             color: rgba(226, 232, 240, .88);
-            font-size: .78rem;
+            font-size: .68rem;
             font-weight: 950;
             letter-spacing: .18em;
             text-transform: uppercase;
         }
 
         .mc-show-stat-value {
-            margin-top: .65rem;
+            margin-top: .4rem;
             color: #fff;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 950;
             line-height: 1;
         }
@@ -159,7 +159,7 @@
         }
 
         @media (max-width: 640px) {
-            .mc-show-hero { padding: 1.6rem; }
+            .mc-show-hero { padding: 1.05rem; }
             .mc-show-back { min-width: 0; width: 100%; }
             .mc-show-actions { gap: 1rem; }
         }
