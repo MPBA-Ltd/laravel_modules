@@ -4,7 +4,9 @@ namespace mpba\Modules\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use mpba\Modules\Support\DatabaseModuleRegistry;
 
@@ -14,10 +16,47 @@ class ModuleControlController extends Controller
         protected DatabaseModuleRegistry $registry,
     ) {}
 
-    public function index(): View
+    public function index(Request $request): View
     {
+        $search = trim((string) $request->query('search', ''));
+        $perPage = 4;
+        $page = max(1, (int) $request->query('page', 1));
+
+        $allModules = $this->registry->all();
+
+        $filteredModules = $search === ''
+            ? $allModules
+            : $allModules->filter(function (array $module) use ($search): bool {
+                $haystack = implode(' ', array_filter([
+                    $module['name'] ?? null,
+                    $module['alias'] ?? null,
+                    $module['description'] ?? null,
+                    $module['disk_description'] ?? null,
+                    $module['version'] ?? null,
+                    $module['database_version'] ?? null,
+                    $module['disk_version'] ?? null,
+                    $module['path'] ?? null,
+                ]));
+
+                return Str::contains(Str::lower($haystack), Str::lower($search));
+            })->values();
+
+        $modules = new LengthAwarePaginator(
+            $filteredModules->forPage($page, $perPage)->values(),
+            $filteredModules->count(),
+            $perPage,
+            $page,
+            [
+                'path' => $request->url(),
+                'query' => $request->query(),
+            ]
+        );
+
         return view('modules-control::index', [
-            'modules' => $this->registry->all(),
+            'modules' => $modules,
+            'allModules' => $allModules,
+            'filteredCount' => $filteredModules->count(),
+            'search' => $search,
         ]);
     }
 
