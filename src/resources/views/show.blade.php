@@ -1,31 +1,26 @@
 <x-layouts.app :title="$module['name'].' Module'">
     <div class="overflow-hidden rounded-[1.75rem] border border-zinc-800 bg-gradient-to-r from-slate-950 via-blue-950 to-cyan-700 px-6 py-8 shadow-sm sm:px-8 lg:px-10">
-        <div class="flex items-center justify-between gap-8">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div class="min-w-0">
                 <p class="text-[0.72rem] font-black uppercase tracking-[0.32em] text-cyan-300">Module Control</p>
                 <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} Module</h1>
                 <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200 sm:text-lg">
                     Database metadata, dependencies, developer information and activation controls.
                 </p>
-
             </div>
 
-            <div class="hidden shrink-0 lg:flex lg:flex-col lg:items-end lg:gap-4">
-                <a href="{{ route('modules.control.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-emerald-400 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
-                    <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
-                    Back to Module Control
+            <div class="flex shrink-0 items-center gap-5 lg:justify-end">
+                <a href="{{ route('modules.control.index') }}" wire:navigate
+                   class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-300/40 bg-emerald-600 px-6 py-3 text-sm font-black text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-300/20 transition hover:border-emerald-200/60 hover:bg-emerald-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+                    <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
+                    <span>{{ __('Back to Module Control') }}</span>
                 </a>
 
-                <span class="inline-flex h-24 w-24 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-white/15 shadow-sm backdrop-blur">
-                    <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-4xl" aria-hidden="true"></i>
-                </span>
-            </div>
+                <div class="hidden h-16 w-px bg-white/15 lg:block"></div>
 
-            <div class="mt-5 flex lg:hidden">
-                <a href="{{ route('modules.control.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-emerald-400 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
-                    <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
-                    Back to Module Control
-                </a>
+                <div class="hidden h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur lg:inline-flex">
+                    <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-3xl" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
     </div>
