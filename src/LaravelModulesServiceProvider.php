@@ -24,7 +24,7 @@ class LaravelModulesServiceProvider extends ModulesServiceProvider
         ], 'modules-migrations');
 
         $this->publishes([
-            __DIR__.'/Database/Seeders' => database_path('seeders/vendor/modules'),
+            __DIR__ . '/satabase/Seeders' => database_path('seeders/vendor/modules'),
         ], 'modules-seeders');
 
         if ($this->app['config']->get('modules.admin.enabled', true)) {

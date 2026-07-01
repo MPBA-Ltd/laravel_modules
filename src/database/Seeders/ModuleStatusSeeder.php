@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace mpba\Modules\Database\Seeders;
+namespace mpba\Modules\database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
