@@ -1,8 +1,8 @@
 <x-layouts.app :title="$module['name'].' Module'">
-    <section class="overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-8 py-8 shadow-2xl shadow-slate-950/30 sm:px-10">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,35rem)] lg:items-start">
-            <div class="min-w-0">
-                <p class="text-xs font-black uppercase tracking-[0.30em] text-cyan-300">
+    <section class="overflow-hidden rounded-[1.35rem] border border-blue-400/20 bg-[radial-gradient(circle_at_18%_25%,rgba(14,165,233,0.18),transparent_34%),linear-gradient(135deg,#061024_0%,#0b1b48_54%,#071225_100%)] px-8 py-9 shadow-2xl shadow-black/20 sm:px-10 lg:px-12">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div class="max-w-2xl">
+                <p class="text-[0.72rem] font-black uppercase tracking-[0.34em] text-emerald-300">
                     {{ __('Module Control') }}
                 </p>
 
@@ -10,46 +10,43 @@
                     {{ $module['name'] }} {{ __('Module') }}
                 </h1>
 
-                <p class="mt-5 max-w-3xl text-base font-semibold leading-7 text-blue-50/85 sm:text-lg">
+                <p class="mt-5 max-w-xl text-base font-semibold leading-7 text-slate-200 sm:text-lg">
                     {{ __('Database metadata, dependencies, developer information and activation controls.') }}
                 </p>
             </div>
 
-            <div class="space-y-5">
-                <div class="flex items-center justify-end gap-5">
-                    <span class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+            <div class="w-full max-w-[31rem] lg:self-start">
+                <div class="flex items-center justify-end gap-6">
+                    <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/55 bg-emerald-400/10 text-emerald-200 shadow-sm">
                         <i class="fa-solid {{ $module['icon'] ?: 'fa-chart-line' }} text-2xl" aria-hidden="true"></i>
                     </span>
 
                     <div class="h-16 w-px bg-white/15"></div>
 
                     <a href="{{ route('modules.control.index') }}" wire:navigate
-                       class="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-emerald-400/50 bg-emerald-600/15 px-6 py-3 text-sm font-black text-emerald-100 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-600/30 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/50">
-                        <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
+                       class="inline-flex min-h-16 items-center justify-center gap-4 rounded-2xl border border-emerald-400/60 bg-emerald-500/5 px-8 text-sm font-black text-emerald-300 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-500/15 hover:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                         {{ __('Back to Module Control') }}
                     </a>
                 </div>
 
-                <div class="rounded-2xl border border-white/15 bg-slate-950/25 p-5 shadow-xl backdrop-blur">
-                    <div class="grid grid-cols-2 divide-x divide-white/15">
-                        <div class="px-4 first:pl-0">
-                            <div class="text-xs font-black uppercase tracking-[0.20em] text-blue-100/80">{{ __('Status') }}</div>
-                            <div class="mt-3 text-2xl font-black {{ $module['enabled'] ? 'text-emerald-300' : 'text-red-300' }}">
-                                {{ $module['enabled'] ? __('Enabled') : __('Disabled') }}
-                            </div>
+                <div class="mt-7 grid grid-cols-2 divide-x divide-white/15 rounded-2xl border border-white/15 bg-slate-950/20 p-6 shadow-xl shadow-black/10 backdrop-blur">
+                    <div class="pr-8">
+                        <div class="text-xs font-black uppercase tracking-[0.22em] text-slate-300">{{ __('Status') }}</div>
+                        <div class="mt-4 text-2xl font-black {{ $module['enabled'] ? 'text-emerald-300' : 'text-red-300' }}">
+                            {{ $module['enabled'] ? __('Enabled') : __('Disabled') }}
                         </div>
+                    </div>
 
-                        <div class="px-4">
-                            <div class="text-xs font-black uppercase tracking-[0.20em] text-blue-100/80">{{ __('Requires') }}</div>
-                            <div class="mt-3 text-2xl font-black text-white">{{ count($module['requires']) }}</div>
-                        </div>
+                    <div class="pl-8">
+                        <div class="text-xs font-black uppercase tracking-[0.22em] text-slate-300">{{ __('Requires') }}</div>
+                        <div class="mt-4 text-2xl font-black text-white">{{ count($module['requires']) }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    @php
+@php
         $fileGroups = [
             'Routes' => $module['routes'] ?? [],
             'Migrations' => $module['migrations'] ?? [],
@@ -67,56 +64,14 @@
                 </div>
             @endif
         @endforeach
-
-        <div class="grid gap-4 lg:grid-cols-4">
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <div class="flex items-center gap-3">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">
-                        <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }}" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <div class="text-xs font-semibold uppercase text-zinc-500">Module</div>
-                        <div class="font-semibold text-zinc-950 dark:text-zinc-100">{{ $module['name'] }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <div class="text-xs font-semibold uppercase text-zinc-500">Status</div>
-                <div class="mt-2">
-                    @if ($module['enabled'])
-                        <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300"><i class="fa-solid fa-circle-check"></i> Enabled</span>
-                    @else
-                        <span class="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-300"><i class="fa-solid fa-circle-pause"></i> Disabled</span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <div class="text-xs font-semibold uppercase text-zinc-500">Version</div>
-                <div class="mt-2 font-semibold text-zinc-950 dark:text-zinc-100">{{ $module['version'] ?: '—' }}</div>
-                @if ($module['has_update'])
-                    <div class="mt-1 text-xs font-semibold text-amber-700 dark:text-amber-300">Update available</div>
-                @endif
-            </div>
-
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <div class="text-xs font-semibold uppercase text-zinc-500">Dependencies</div>
-                <div class="mt-2 font-semibold {{ $module['has_missing_dependencies'] ? 'text-orange-700 dark:text-orange-300' : 'text-zinc-950 dark:text-zinc-100' }}">
-                    {{ count($module['requires']) }} required
-                </div>
-                @if ($module['has_missing_dependencies'])
-                    <div class="mt-1 text-xs text-orange-700 dark:text-orange-300">Missing dependency</div>
-                @endif
-            </div>
-        </div>
-
         <div class="grid gap-6 xl:grid-cols-3">
             <div class="space-y-6 xl:col-span-2">
                 <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                    <div>
-                        <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Database metadata</h2>
-                        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">These fields are saved only in the module_statuses table.</p>
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Database metadata</h2>
+                            <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">These fields are saved only in the module_statuses table.</p>
+                        </div>
                     </div>
 
                     <form method="POST" action="{{ route('modules.control.update', $module['name']) }}" class="mt-6 space-y-5">

@@ -1,5 +1,51 @@
 <x-layouts.app :title="__('Module Control')">
-    @php
+    <section class="overflow-hidden rounded-[1.35rem] border border-blue-400/20 bg-[radial-gradient(circle_at_18%_25%,rgba(14,165,233,0.20),transparent_34%),linear-gradient(135deg,#061024_0%,#0b1b48_54%,#071225_100%)] px-8 py-9 shadow-2xl shadow-black/20 sm:px-10 lg:px-12">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div class="max-w-2xl">
+                <p class="text-[0.72rem] font-black uppercase tracking-[0.34em] text-emerald-300">
+                    {{ __('Platform Administration') }}
+                </p>
+
+                <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
+                    {{ __('Module Control') }}
+                </h1>
+
+                <p class="mt-5 max-w-xl text-base font-semibold leading-7 text-slate-200 sm:text-lg">
+                    {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
+                </p>
+            </div>
+
+            <div class="w-full max-w-[31rem] rounded-2xl border border-white/15 bg-slate-950/25 p-5 shadow-xl shadow-black/10 backdrop-blur lg:self-start">
+                <div class="flex items-start justify-between gap-4">
+                    <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/55 bg-emerald-400/10 text-emerald-200 shadow-sm">
+                        <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
+                    </span>
+
+                    <span class="inline-flex rounded-full border border-white/25 bg-white/10 px-5 py-2 text-[0.68rem] font-black uppercase tracking-[0.22em] text-slate-100">
+                        {{ __('Database Backed') }}
+                    </span>
+                </div>
+
+                <div class="mt-8 grid grid-cols-3 divide-x divide-white/15">
+                    <div class="pr-5">
+                        <div class="text-4xl font-black text-white">{{ $stats['installed'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-slate-200">{{ __('Installed') }}</div>
+                    </div>
+
+                    <div class="px-5">
+                        <div class="text-4xl font-black text-emerald-300">{{ $stats['enabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-slate-200">{{ __('Enabled') }}</div>
+                    </div>
+
+                    <div class="pl-5">
+                        <div class="text-4xl font-black text-red-300">{{ $stats['disabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-slate-200">{{ __('Disabled') }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@php
         $filterCards = [
             ['key' => 'all', 'label' => 'Installed', 'value' => $stats['installed'], 'icon' => 'fa-puzzle-piece', 'tone' => 'blue', 'hint' => 'All modules'],
             ['key' => 'enabled', 'label' => 'Enabled', 'value' => $stats['enabled'], 'icon' => 'fa-circle-check', 'tone' => 'emerald', 'hint' => 'Active modules'],
@@ -23,58 +69,6 @@
             'orange' => 'border-orange-500/40 bg-orange-500/10 text-orange-700 dark:text-orange-300',
         ];
     @endphp
-
-
-    <section class="overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-8 py-8 shadow-2xl shadow-slate-950/30 sm:px-10">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(28rem,35rem)] lg:items-start">
-            <div class="min-w-0">
-                <p class="text-xs font-black uppercase tracking-[0.30em] text-cyan-300">
-                    {{ __('Platform Administration') }}
-                </p>
-
-                <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
-                    {{ __('Module Control') }}
-                </h1>
-
-                <p class="mt-5 max-w-3xl text-base font-semibold leading-7 text-blue-50/85 sm:text-lg">
-                    {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
-                </p>
-            </div>
-
-            <div class="rounded-2xl border border-white/20 bg-slate-950/30 p-6 shadow-xl backdrop-blur">
-                <div class="flex items-start justify-between gap-4">
-                    <span class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
-                        <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
-                    </span>
-
-                    <span class="rounded-full border border-white/30 px-4 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.24em] text-white/90">
-                        {{ __('Database Backed') }}
-                    </span>
-                </div>
-
-                <div class="mt-8 grid grid-cols-3 divide-x divide-white/15">
-                    <a href="{{ route('modules.control.index') }}" class="group px-4 first:pl-0 last:pr-0">
-                        <div class="text-4xl font-black text-white group-hover:text-blue-200">{{ $stats['installed'] }}</div>
-                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Installed') }}</div>
-                    </a>
-
-                    <a href="{{ route('modules.control.index', ['filter' => 'enabled']) }}" class="group px-4 first:pl-0 last:pr-0">
-                        <div class="text-4xl font-black text-emerald-300 group-hover:text-emerald-200">{{ $stats['enabled'] }}</div>
-                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Enabled') }}</div>
-                    </a>
-
-                    <a href="{{ route('modules.control.index', ['filter' => 'disabled']) }}" class="group px-4 first:pl-0 last:pr-0">
-                        <div class="text-4xl font-black text-red-300 group-hover:text-red-200">{{ $stats['disabled'] }}</div>
-                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Disabled') }}</div>
-                    </a>
-                </div>
-
-                <div class="mt-6 h-2 rounded-full bg-white/10">
-                    <div class="h-2 rounded-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400" style="width: {{ $stats['installed'] > 0 ? min(100, round(($stats['enabled'] / max(1, $stats['installed'])) * 100)) : 0 }}%"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="space-y-6">
         @foreach (['status' => 'emerald', 'warning' => 'amber', 'error' => 'red'] as $flash => $tone)
@@ -266,7 +260,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable
