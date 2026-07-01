@@ -29,65 +29,211 @@
     @endphp
 
     <style>
-        .mc-row,
-        .mc-row:hover,
-        .mc-row:focus-within {
-            background: rgb(24 24 27 / 0.68) !important;
-            color: inherit !important;
+        .mc-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(28rem, 37rem);
+            align-items: center;
+            gap: 3.5rem;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(45, 79, 137, .72);
+            background:
+                radial-gradient(circle at 26% 18%, rgba(20, 184, 166, .18), transparent 31%),
+                linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
+            padding: 2.6rem 2.8rem;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
 
-        .mc-row:hover {
-            background: linear-gradient(90deg, rgb(24 24 27 / 0.92), rgb(9 24 43 / 0.78)) !important;
+        .mc-hero-kicker {
+            margin: 0 0 1.25rem;
+            color: #5ef7d0;
+            font-size: .82rem;
+            font-weight: 900;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+        }
+
+        .mc-hero-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(2.35rem, 4vw, 4.15rem);
+            font-weight: 950;
+            letter-spacing: -.045em;
+            line-height: .98;
+        }
+
+        .mc-hero-subtitle {
+            margin: 1.3rem 0 0;
+            max-width: 42rem;
+            color: rgba(241, 245, 249, .9);
+            font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .mc-hero-metric-panel {
+            justify-self: end;
+            width: min(100%, 36rem);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(148, 163, 184, .28);
+            background: rgba(2, 6, 23, .36);
+            padding: 1.5rem 1.7rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 34px rgba(0,0,0,.22);
+        }
+
+        .mc-hero-metric-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.25rem;
+            margin-bottom: 1.9rem;
+        }
+
+        .mc-hero-icon {
+            display: inline-flex;
+            height: 4.25rem;
+            width: 4.25rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            border: 1px solid rgba(94, 234, 212, .58);
+            background: rgba(20, 184, 166, .12);
+            color: #a7f3d0;
+            font-size: 1.8rem;
+        }
+
+        .mc-hero-pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            border: 1px solid rgba(226, 232, 240, .35);
+            background: rgba(255,255,255,.08);
+            padding: .58rem 1.15rem;
+            color: rgba(248, 250, 252, .94);
+            font-size: .72rem;
+            font-weight: 950;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .mc-hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .mc-hero-metric {
+            padding: .25rem 1.45rem;
+            border-left: 1px solid rgba(226, 232, 240, .25);
+        }
+
+        .mc-hero-metric:first-child {
+            border-left: 0;
+            padding-left: 0;
+        }
+
+        .mc-hero-metric-number {
+            color: #fff;
+            font-size: 2.55rem;
+            font-weight: 950;
+            line-height: 1;
+        }
+
+        .mc-hero-metric-number.is-enabled { color: #5ef7b7; }
+        .mc-hero-metric-number.is-disabled { color: #fb7185; }
+
+        .mc-hero-metric-label {
+            margin-top: .6rem;
+            color: rgba(226, 232, 240, .92);
+            font-size: .78rem;
+            font-weight: 950;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .mc-row,
+        .mc-row:hover,
+        .mc-row:focus-within,
+        .mc-row *:not(a):not(button):not(input):not(select) {
+            color: inherit;
+        }
+
+        .mc-row {
+            background: rgba(24, 24, 27, .72) !important;
+        }
+
+        .mc-row:hover,
+        .mc-row:focus-within {
+            background: linear-gradient(90deg, rgba(24, 24, 27, .96), rgba(8, 22, 42, .82)) !important;
         }
 
         .mc-view-button,
-        .mc-view-button:hover,
-        .mc-view-button:focus {
-            background: rgb(5 150 105) !important;
-            border-color: rgb(16 185 129 / 0.65) !important;
+        .mc-view-button:visited {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: .75rem;
+            border: 1px solid rgba(16,185,129,.58) !important;
+            background: #059669 !important;
             color: #fff !important;
+            font-weight: 850;
+            box-shadow: 0 10px 20px rgba(5, 150, 105, .18);
         }
 
-        .mc-view-button:hover {
-            background: rgb(4 120 87) !important;
+        .mc-view-button:hover,
+        .mc-view-button:focus {
+            border-color: rgba(110,231,183,.72) !important;
+            background: #047857 !important;
+            color: #fff !important;
+            outline: none;
+        }
+
+        @media (max-width: 1100px) {
+            .mc-hero { grid-template-columns: 1fr; }
+            .mc-hero-metric-panel { justify-self: stretch; width: 100%; }
+        }
+
+        @media (max-width: 640px) {
+            .mc-hero { padding: 1.6rem; }
+            .mc-hero-metric-panel { padding: 1.2rem; }
+            .mc-hero-metric { padding-inline: .8rem; }
+            .mc-hero-metric-number { font-size: 2rem; }
         }
     </style>
 
     <div class="space-y-6">
-        <section class="overflow-hidden rounded-[1.35rem] border border-blue-400/20 bg-[radial-gradient(circle_at_30%_15%,rgba(22,163,184,0.25),transparent_32%),linear-gradient(135deg,#050b21_0%,#0b1a47_48%,#07111f_100%)] px-8 py-9 shadow-2xl shadow-black/30 sm:px-10 lg:px-12">
-            <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(30rem,36rem)] lg:items-start">
-                <div class="max-w-3xl">
-                    <p class="text-xs font-black uppercase tracking-[0.35em] text-emerald-300">Platform Administration</p>
-                    <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">Module Control</h1>
-                    <p class="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-                        Manage installed modules, database metadata, dependencies and activation state.
-                    </p>
+        <section class="mc-hero">
+            <div class="mc-hero-copy">
+                <p class="mc-hero-kicker">Platform Administration</p>
+                <h1 class="mc-hero-title">Module Control</h1>
+                <p class="mc-hero-subtitle">
+                    Manage installed modules, database metadata, dependencies and activation state.
+                </p>
+            </div>
+
+            <div class="mc-hero-metric-panel" aria-label="Module control summary">
+                <div class="mc-hero-metric-top">
+                    <span class="mc-hero-icon">
+                        <i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
+                    </span>
+
+                    <span class="mc-hero-pill">Database backed</span>
                 </div>
 
-                <div class="rounded-[1.35rem] border border-white/20 bg-slate-950/25 p-6 shadow-2xl shadow-black/20 ring-1 ring-white/10 backdrop-blur">
-                    <div class="flex items-start justify-between gap-4">
-                        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
-                            <i class="fa-solid fa-puzzle-piece text-3xl" aria-hidden="true"></i>
-                        </span>
-
-                        <span class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-black uppercase tracking-[0.22em] text-slate-100">
-                            Database backed
-                        </span>
+                <div class="mc-hero-metrics">
+                    <div class="mc-hero-metric">
+                        <div class="mc-hero-metric-number">{{ $installedCount }}</div>
+                        <div class="mc-hero-metric-label">Installed</div>
                     </div>
 
-                    <div class="mt-8 grid grid-cols-3 gap-0">
-                        <div class="border-r border-white/20 pr-6">
-                            <div class="text-4xl font-black text-white">{{ $installedCount }}</div>
-                            <div class="mt-1 text-sm font-black uppercase tracking-wide text-slate-200">Installed</div>
-                        </div>
-                        <div class="border-r border-white/20 px-6">
-                            <div class="text-4xl font-black text-emerald-300">{{ $enabledCount }}</div>
-                            <div class="mt-1 text-sm font-black uppercase tracking-wide text-slate-200">Enabled</div>
-                        </div>
-                        <div class="pl-6">
-                            <div class="text-4xl font-black text-red-300">{{ $disabledCount }}</div>
-                            <div class="mt-1 text-sm font-black uppercase tracking-wide text-slate-200">Disabled</div>
-                        </div>
+                    <div class="mc-hero-metric">
+                        <div class="mc-hero-metric-number is-enabled">{{ $enabledCount }}</div>
+                        <div class="mc-hero-metric-label">Enabled</div>
+                    </div>
+
+                    <div class="mc-hero-metric">
+                        <div class="mc-hero-metric-number is-disabled">{{ $disabledCount }}</div>
+                        <div class="mc-hero-metric-label">Disabled</div>
                     </div>
                 </div>
             </div>

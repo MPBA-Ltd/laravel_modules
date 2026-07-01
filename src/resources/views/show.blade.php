@@ -9,44 +9,198 @@
         ];
     @endphp
 
+    <style>
+        .mc-show-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(29rem, 38rem);
+            align-items: start;
+            gap: 3.5rem;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(45, 79, 137, .72);
+            background:
+                radial-gradient(circle at 24% 18%, rgba(20, 184, 166, .16), transparent 32%),
+                linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
+            padding: 2.55rem 2.8rem;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
+        }
+
+        .mc-show-kicker {
+            margin: 0 0 1.25rem;
+            color: #5ef7d0;
+            font-size: .82rem;
+            font-weight: 950;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+        }
+
+        .mc-show-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(2.3rem, 3.8vw, 3.9rem);
+            font-weight: 950;
+            letter-spacing: -.045em;
+            line-height: .98;
+        }
+
+        .mc-show-subtitle {
+            margin: 1.3rem 0 0;
+            max-width: 41rem;
+            color: rgba(241, 245, 249, .9);
+            font-size: clamp(1.05rem, 1.6vw, 1.32rem);
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .mc-show-side {
+            justify-self: end;
+            width: min(100%, 36rem);
+        }
+
+        .mc-show-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1.45rem;
+        }
+
+        .mc-show-icon {
+            display: inline-flex;
+            height: 4.25rem;
+            width: 4.25rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            border: 1px solid rgba(94, 234, 212, .58);
+            background: rgba(20, 184, 166, .10);
+            color: #a7f3d0;
+            font-size: 1.75rem;
+        }
+
+        .mc-show-divider {
+            height: 4.25rem;
+            width: 1px;
+            background: rgba(226, 232, 240, .22);
+        }
+
+        .mc-show-back,
+        .mc-show-back:visited {
+            display: inline-flex;
+            min-height: 4.25rem;
+            min-width: 20rem;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(16, 185, 129, .62);
+            background: rgba(5, 150, 105, .06);
+            color: #5ef7b7;
+            font-size: 1.02rem;
+            font-weight: 950;
+            text-decoration: none;
+            transition: background .15s ease, border-color .15s ease, color .15s ease;
+        }
+
+        .mc-show-back:hover,
+        .mc-show-back:focus {
+            background: rgba(5, 150, 105, .16);
+            border-color: rgba(94, 234, 212, .82);
+            color: #a7f3d0;
+            outline: none;
+        }
+
+        .mc-show-status-panel {
+            margin-top: 1.75rem;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, .26);
+            background: rgba(2, 6, 23, .28);
+            padding: 1.35rem 1.55rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 14px 28px rgba(0,0,0,.18);
+        }
+
+        .mc-show-status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .mc-show-stat {
+            padding: .2rem 1.5rem;
+            border-left: 1px solid rgba(226, 232, 240, .22);
+        }
+
+        .mc-show-stat:first-child {
+            padding-left: 0;
+            border-left: 0;
+        }
+
+        .mc-show-stat-label {
+            color: rgba(226, 232, 240, .88);
+            font-size: .78rem;
+            font-weight: 950;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .mc-show-stat-value {
+            margin-top: .65rem;
+            color: #fff;
+            font-size: 1.45rem;
+            font-weight: 950;
+            line-height: 1;
+        }
+
+        .mc-show-stat-value.is-enabled { color: #5ef7b7; }
+        .mc-show-stat-value.is-disabled { color: #fb7185; }
+
+        @media (max-width: 1100px) {
+            .mc-show-hero { grid-template-columns: 1fr; }
+            .mc-show-side { justify-self: stretch; width: 100%; }
+            .mc-show-actions { justify-content: flex-start; flex-wrap: wrap; }
+        }
+
+        @media (max-width: 640px) {
+            .mc-show-hero { padding: 1.6rem; }
+            .mc-show-back { min-width: 0; width: 100%; }
+            .mc-show-actions { gap: 1rem; }
+        }
+    </style>
+
     <div class="space-y-6">
-        <section class="overflow-hidden rounded-[1.35rem] border border-blue-400/20 bg-[radial-gradient(circle_at_25%_12%,rgba(22,163,184,0.18),transparent_30%),linear-gradient(135deg,#050b21_0%,#0b1a47_52%,#07111f_100%)] px-8 py-9 shadow-2xl shadow-black/30 sm:px-10 lg:px-12">
-            <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(29rem,36rem)] lg:items-start">
-                <div class="max-w-3xl">
-                    <p class="text-xs font-black uppercase tracking-[0.35em] text-emerald-300">Module Control</p>
-                    <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} Module</h1>
-                    <p class="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-                        Database metadata, dependencies, developer information and activation controls.
-                    </p>
+        <section class="mc-show-hero">
+            <div class="mc-show-copy">
+                <p class="mc-show-kicker">Module Control</p>
+                <h1 class="mc-show-title">{{ $module['name'] }} Module</h1>
+                <p class="mc-show-subtitle">
+                    Database metadata, dependencies, developer information and activation controls.
+                </p>
+            </div>
+
+            <div class="mc-show-side">
+                <div class="mc-show-actions">
+                    <span class="mc-show-icon" aria-hidden="true">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+
+                    <span class="mc-show-divider" aria-hidden="true"></span>
+
+                    <a href="{{ route('modules.control.index') }}" wire:navigate class="mc-show-back">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        {{ __('Back to Module Control') }}
+                    </a>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="flex items-center justify-end gap-6">
-                        <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/55 bg-emerald-400/10 text-emerald-200 shadow-sm">
-                            <i class="fa-solid fa-chart-line text-3xl" aria-hidden="true"></i>
-                        </span>
-
-                        <div class="h-16 w-px bg-white/20"></div>
-
-                        <a href="{{ route('modules.control.index') }}" wire:navigate
-                           class="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl border border-emerald-400/55 bg-emerald-500/5 px-8 py-3 text-sm font-black text-emerald-300 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-500/15 hover:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">
-                            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                            {{ __('Back to Module Control') }}
-                        </a>
-                    </div>
-
-                    <div class="rounded-[1.35rem] border border-white/15 bg-slate-950/25 p-6 shadow-2xl shadow-black/20 ring-1 ring-white/10 backdrop-blur">
-                        <div class="grid grid-cols-2 gap-0">
-                            <div class="border-r border-white/20 pr-8">
-                                <div class="text-xs font-black uppercase tracking-[0.22em] text-slate-300">Status</div>
-                                <div class="mt-4 text-2xl font-black {{ $module['enabled'] ? 'text-emerald-300' : 'text-red-300' }}">
-                                    {{ $module['enabled'] ? 'Enabled' : 'Disabled' }}
-                                </div>
+                <div class="mc-show-status-panel" aria-label="Module status summary">
+                    <div class="mc-show-status-grid">
+                        <div class="mc-show-stat">
+                            <div class="mc-show-stat-label">Status</div>
+                            <div class="mc-show-stat-value {{ $module['enabled'] ? 'is-enabled' : 'is-disabled' }}">
+                                {{ $module['enabled'] ? 'Enabled' : 'Disabled' }}
                             </div>
-                            <div class="pl-8">
-                                <div class="text-xs font-black uppercase tracking-[0.22em] text-slate-300">Requires</div>
-                                <div class="mt-4 text-2xl font-black text-white">{{ count($module['requires']) }}</div>
-                            </div>
+                        </div>
+
+                        <div class="mc-show-stat">
+                            <div class="mc-show-stat-label">Requires</div>
+                            <div class="mc-show-stat-value">{{ count($module['requires']) }}</div>
                         </div>
                     </div>
                 </div>
