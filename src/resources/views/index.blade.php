@@ -18,20 +18,32 @@
         @endif
 
         <div class="grid gap-4 md:grid-cols-3">
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <div class="text-xs font-semibold uppercase tracking-wide text-zinc-500">Installed</div>
+            <a
+                href="{{ route('modules.control.index', array_filter(['search' => $search])) }}"
+                class="rounded-2xl border p-5 shadow-sm transition hover:border-blue-400/60 hover:bg-blue-500/5 {{ $status === 'all' ? 'border-blue-500/50 bg-blue-500/10 dark:bg-blue-500/10' : 'border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900' }}"
+            >
+                <div class="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Installed</div>
                 <div class="mt-2 text-3xl font-bold text-zinc-900 dark:text-zinc-100">{{ $allModules->count() }}</div>
-            </div>
+                <div class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Show all modules</div>
+            </a>
 
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <a
+                href="{{ route('modules.control.index', array_filter(['status' => 'enabled', 'search' => $search])) }}"
+                class="rounded-2xl border p-5 shadow-sm transition hover:border-emerald-400/60 hover:bg-emerald-500/5 {{ $status === 'enabled' ? 'border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-500/10' : 'border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900' }}"
+            >
                 <div class="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Enabled</div>
                 <div class="mt-2 text-3xl font-bold text-emerald-700 dark:text-emerald-300">{{ $enabledCount }}</div>
-            </div>
+                <div class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Show enabled modules</div>
+            </a>
 
-            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <a
+                href="{{ route('modules.control.index', array_filter(['status' => 'disabled', 'search' => $search])) }}"
+                class="rounded-2xl border p-5 shadow-sm transition hover:border-red-400/60 hover:bg-red-500/5 {{ $status === 'disabled' ? 'border-red-500/50 bg-red-500/10 dark:bg-red-500/10' : 'border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900' }}"
+            >
                 <div class="text-xs font-semibold uppercase tracking-wide text-red-700 dark:text-red-300">Disabled</div>
                 <div class="mt-2 text-3xl font-bold text-red-700 dark:text-red-300">{{ $disabledCount }}</div>
-            </div>
+                <div class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Show disabled modules</div>
+            </a>
         </div>
 
         <div class="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 xl:flex-row xl:items-end xl:justify-between">
@@ -44,6 +56,9 @@
 
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <form method="GET" action="{{ route('modules.control.index') }}" class="flex flex-col gap-2 sm:flex-row sm:items-center">
+                    @if ($status !== 'all')
+                        <input type="hidden" name="status" value="{{ $status }}" />
+                    @endif
                     <label for="module-search" class="sr-only">Search modules</label>
                     <input
                         id="module-search"
@@ -57,7 +72,7 @@
                         Search
                     </button>
                     @if ($search !== '')
-                        <a href="{{ route('modules.control.index') }}" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
+                        <a href="{{ route('modules.control.index', $status === 'all' ? [] : ['status' => $status]) }}" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
                             Clear
                         </a>
                     @endif
@@ -74,7 +89,7 @@
 
         <div class="flex flex-col gap-1 text-sm text-zinc-500 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                Showing {{ $modules->firstItem() ?? 0 }}-{{ $modules->lastItem() ?? 0 }} of {{ $modules->total() }} modules.
+                Showing {{ $modules->firstItem() ?? 0 }}-{{ $modules->lastItem() ?? 0 }} of {{ $modules->total() }} {{ $status === 'all' ? '' : $status }} modules.
                 @if ($search !== '')
                     Search: <span class="font-semibold text-zinc-800 dark:text-zinc-200">{{ $search }}</span>
                 @endif

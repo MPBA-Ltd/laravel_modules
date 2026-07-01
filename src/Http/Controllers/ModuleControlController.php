@@ -19,14 +19,24 @@ class ModuleControlController extends Controller
     public function index(Request $request): View
     {
         $search = trim((string) $request->query('search', ''));
+        $status = (string) $request->query('status', 'all');
+        $status = in_array($status, ['all', 'enabled', 'disabled'], true) ? $status : 'all';
         $perPage = 4;
         $page = max(1, (int) $request->query('page', 1));
 
         $allModules = $this->registry->all();
 
+        $filteredModules = $allModules;
+
+        if ($status === 'enabled') {
+            $filteredModules = $filteredModules->where('enabled', true)->values();
+        } elseif ($status === 'disabled') {
+            $filteredModules = $filteredModules->where('enabled', false)->values();
+        }
+
         $filteredModules = $search === ''
-            ? $allModules
-            : $allModules->filter(function (array $module) use ($search): bool {
+            ? $filteredModules
+            : $filteredModules->filter(function (array $module) use ($search): bool {
                 $haystack = implode(' ', array_filter([
                     $module['name'] ?? null,
                     $module['alias'] ?? null,
@@ -57,6 +67,7 @@ class ModuleControlController extends Controller
             'allModules' => $allModules,
             'filteredCount' => $filteredModules->count(),
             'search' => $search,
+            'status' => $status,
         ]);
     }
 
