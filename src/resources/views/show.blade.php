@@ -9,9 +9,9 @@
                 </p>
             </div>
 
-            <div class="flex shrink-0 items-center gap-5 lg:justify-end">
+            <div class="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-end lg:gap-5">
                 <a href="{{ route('modules.control.index') }}" wire:navigate
-                   class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-300/40 bg-emerald-600 px-6 py-3 text-sm font-black text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-300/20 transition hover:border-emerald-200/60 hover:bg-emerald-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+                   class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-300/40 bg-emerald-600 px-6 py-3 text-sm font-black !text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-300/20 transition hover:border-emerald-200/60 hover:!bg-emerald-500 hover:!text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
                     <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
                     <span>{{ __('Back to Module Control') }}</span>
                 </a>

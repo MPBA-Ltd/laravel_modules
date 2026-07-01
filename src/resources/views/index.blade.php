@@ -9,7 +9,7 @@
                 </p>
             </div>
 
-            <div class="hidden shrink-0 items-center gap-5 lg:flex lg:justify-end">
+            <div class="hidden shrink-0 items-center justify-end gap-5 lg:flex">
                 <div class="h-16 w-px bg-white/15"></div>
 
                 <div class="inline-flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur">
@@ -181,7 +181,7 @@
 
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                             @forelse ($modules as $module)
-                                <tr class="align-top transition hover:!bg-zinc-100/70 dark:hover:!bg-zinc-800/45">
+                                <tr class="align-top transition hover:!bg-zinc-800/45">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
                                     </td>
@@ -234,7 +234,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="inline-flex items-center justify-center rounded-lg border border-emerald-400/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold !text-white shadow-sm transition hover:border-emerald-300/60 hover:!bg-emerald-500 hover:!text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="inline-flex items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold !text-white shadow-sm transition hover:border-emerald-400/60 hover:!bg-emerald-500 hover:!text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable
