@@ -189,7 +189,10 @@
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer files</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Routes, migrations, models, controllers and providers discovered for this module.</p>
                         </div>
-                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-zinc-300 text-zinc-500 transition group-open:rotate-90 dark:border-zinc-700 dark:text-zinc-300" aria-hidden="true">›</span>
+                        <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-500 shadow-sm transition group-hover:border-zinc-300 group-hover:bg-white group-hover:text-zinc-800 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-300 dark:group-hover:border-zinc-600 dark:group-hover:bg-zinc-800 dark:group-hover:text-white" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right text-xs group-open:hidden"></i>
+                            <i class="fa-solid fa-chevron-down hidden text-xs group-open:inline"></i>
+                        </span>
                     </summary>
 
                     <div class="border-t border-zinc-200 p-6 dark:border-zinc-800">
@@ -220,7 +223,10 @@
                                 <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">README preview</h2>
                                 <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Open to inspect the module README where available.</p>
                             </div>
-                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-zinc-300 text-zinc-500 transition group-open:rotate-90 dark:border-zinc-700 dark:text-zinc-300" aria-hidden="true">›</span>
+                            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-500 shadow-sm transition group-hover:border-zinc-300 group-hover:bg-white group-hover:text-zinc-800 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-300 dark:group-hover:border-zinc-600 dark:group-hover:bg-zinc-800 dark:group-hover:text-white" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right text-xs group-open:hidden"></i>
+                            <i class="fa-solid fa-chevron-down hidden text-xs group-open:inline"></i>
+                        </span>
                         </summary>
 
                         <div class="border-t border-zinc-200 p-6 dark:border-zinc-800">
@@ -242,7 +248,10 @@
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer information</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Path, namespace, composer, git and database metadata.</p>
                         </div>
-                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-zinc-300 text-zinc-500 transition group-open:rotate-90 dark:border-zinc-700 dark:text-zinc-300" aria-hidden="true">›</span>
+                        <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-500 shadow-sm transition group-hover:border-zinc-300 group-hover:bg-white group-hover:text-zinc-800 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-300 dark:group-hover:border-zinc-600 dark:group-hover:bg-zinc-800 dark:group-hover:text-white" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right text-xs group-open:hidden"></i>
+                            <i class="fa-solid fa-chevron-down hidden text-xs group-open:inline"></i>
+                        </span>
                     </summary>
 
                     <div class="border-t border-zinc-200 p-6 dark:border-zinc-800">
