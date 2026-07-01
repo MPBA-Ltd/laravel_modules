@@ -27,6 +27,7 @@ class ModuleStatus extends Model
         'module',
         'enabled',
         'description',
+        'version',
         'sort_order',
     ];
 

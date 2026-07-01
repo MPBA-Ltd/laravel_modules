@@ -71,12 +71,17 @@
                                 @endif
                             </div>
 
-                            <p class="mt-2 line-clamp-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                                {{ $module['description'] ?: 'No database description saved yet.' }}
-                            </p>
+                            <div class="mt-3 rounded-xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-800 dark:bg-zinc-950/60">
+                                <div class="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                                    Database description
+                                </div>
+                                <p class="mt-1 line-clamp-3 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
+                                    {{ $module['description'] ?: 'No database description saved yet.' }}
+                                </p>
+                            </div>
 
-                            @if (! $module['description'] && $module['disk_description'])
-                                <p class="mt-1 text-xs text-zinc-500">
+                            @if ($module['disk_description'])
+                                <p class="mt-2 line-clamp-2 text-xs leading-5 text-zinc-500 dark:text-zinc-500">
                                     Disk description: {{ $module['disk_description'] }}
                                 </p>
                             @endif
@@ -96,7 +101,12 @@
 
                         <div>
                             <dt class="text-xs font-semibold uppercase text-zinc-500">Version</dt>
-                            <dd class="mt-1 text-zinc-800 dark:text-zinc-200">{{ $module['version'] ?: '—' }}</dd>
+                            <dd class="mt-1 text-zinc-800 dark:text-zinc-200">
+                                {{ $module['version'] ?: '—' }}
+                                @if ($module['database_version'])
+                                    <span class="ml-1 text-xs text-blue-600 dark:text-blue-300">DB</span>
+                                @endif
+                            </dd>
                         </div>
 
                         <div>

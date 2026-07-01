@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('module')->unique();
             $table->boolean('enabled')->default(true);
             $table->text('description')->nullable();
+            $table->string('version')->nullable();
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });

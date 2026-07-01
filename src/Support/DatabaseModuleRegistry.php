@@ -42,6 +42,7 @@ class DatabaseModuleRegistry
             ['module' => $module->getName()],
             [
                 'enabled' => $module->isEnabled(),
+                'version' => $this->moduleVersion($module),
                 'sort_order' => (int) $module->get('order', 0),
             ]
         );
@@ -60,6 +61,7 @@ class DatabaseModuleRegistry
                     ->where('module', $module->getName())
                     ->value('enabled') ?? $module->isEnabled(),
                 'description' => $data['description'] ?? null,
+                'version' => $data['version'] ?? null,
                 'sort_order' => (int) ($data['sort_order'] ?? 0),
             ]
         );
@@ -115,7 +117,9 @@ class DatabaseModuleRegistry
             'alias' => $module->getAlias(),
             'description' => $status?->description,
             'disk_description' => $module->getDescription(),
-            'version' => $this->moduleVersion($module),
+            'version' => $this->databaseVersion($status) ?? $this->moduleVersion($module),
+            'database_version' => $this->databaseVersion($status),
+            'disk_version' => $this->moduleVersion($module),
             'sort_order' => (int) ($status?->sort_order ?? $module->get('order', 0)),
             'path' => $module->getPath(),
             'requires' => $module->getRequires(),
@@ -123,6 +127,13 @@ class DatabaseModuleRegistry
             'status_record' => $status,
             'module' => $module,
         ];
+    }
+
+    protected function databaseVersion(?ModuleStatus $status): ?string
+    {
+        $version = $status?->version;
+
+        return is_string($version) && trim($version) !== '' ? trim($version) : null;
     }
 
     protected function moduleVersion(Module $module): ?string

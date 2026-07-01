@@ -15,16 +15,8 @@ return new class extends Migration
         }
 
         Schema::table('module_statuses', function (Blueprint $table): void {
-            if (! Schema::hasColumn('module_statuses', 'description')) {
-                $table->text('description')->nullable()->after('enabled');
-            }
-
             if (! Schema::hasColumn('module_statuses', 'version')) {
                 $table->string('version')->nullable()->after('description');
-            }
-
-            if (! Schema::hasColumn('module_statuses', 'sort_order')) {
-                $table->unsignedInteger('sort_order')->default(0)->after('version');
             }
         });
     }
@@ -36,16 +28,8 @@ return new class extends Migration
         }
 
         Schema::table('module_statuses', function (Blueprint $table): void {
-            if (Schema::hasColumn('module_statuses', 'sort_order')) {
-                $table->dropColumn('sort_order');
-            }
-
             if (Schema::hasColumn('module_statuses', 'version')) {
                 $table->dropColumn('version');
-            }
-
-            if (Schema::hasColumn('module_statuses', 'description')) {
-                $table->dropColumn('description');
             }
         });
     }

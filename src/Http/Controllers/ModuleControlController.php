@@ -32,6 +32,7 @@ class ModuleControlController extends Controller
     {
         $data = $request->validate([
             'description' => ['nullable', 'string', 'max:2000'],
+            'version' => ['nullable', 'string', 'max:50'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:999999'],
         ]);
 

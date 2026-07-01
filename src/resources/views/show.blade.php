@@ -16,7 +16,7 @@
             <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 xl:col-span-2">
                 <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Database metadata</h2>
                 <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                    This description is stored in the module_statuses table only. It does not edit module.json.
+                    Description, version, and sort order are stored in the module_statuses table only. This does not edit module.json.
                 </p>
 
                 <form method="POST" action="{{ route('modules.control.update', $module['name']) }}" class="mt-6 space-y-5">
@@ -39,26 +39,49 @@
                         @enderror
                     </div>
 
-                    <div class="max-w-xs">
-                        <label for="sort_order" class="block text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                            Sort order
-                        </label>
-                        <input
-                            id="sort_order"
-                            name="sort_order"
-                            type="number"
-                            min="0"
-                            value="{{ old('sort_order', $module['sort_order']) }}"
-                            class="mt-2 w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
-                        />
-                        @error('sort_order')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                    <div class="grid gap-5 md:grid-cols-2">
+                        <div>
+                            <label for="version" class="block text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                                Version
+                            </label>
+                            <input
+                                id="version"
+                                name="version"
+                                type="text"
+                                maxlength="50"
+                                value="{{ old('version', $module['database_version'] ?? $module['version']) }}"
+                                class="mt-2 w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                                placeholder="Example: 1.0.0"
+                            />
+                            <p class="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                Saved only in the database. Disk version: {{ $module['disk_version'] ?: '—' }}
+                            </p>
+                            @error('version')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="sort_order" class="block text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                                Sort order
+                            </label>
+                            <input
+                                id="sort_order"
+                                name="sort_order"
+                                type="number"
+                                min="0"
+                                value="{{ old('sort_order', $module['sort_order']) }}"
+                                class="mt-2 w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                            />
+                            @error('sort_order')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="flex flex-wrap gap-3">
                         <button type="submit" class="rounded-xl border border-blue-500/40 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
-                            Save Database Metadata
+                            Save Module Metadata
                         </button>
 
                         <a href="{{ route('modules.control.index') }}" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
@@ -115,7 +138,14 @@
 
                 <div>
                     <dt class="text-xs font-semibold uppercase text-zinc-500">Version</dt>
-                    <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">{{ $module['version'] ?: '—' }}</dd>
+                    <dd class="mt-1 text-sm text-zinc-900 dark:text-zinc-100">
+                        {{ $module['version'] ?: '—' }}
+                        @if ($module['database_version'])
+                            <span class="ml-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-xs font-semibold text-blue-700 dark:text-blue-300">Database</span>
+                        @elseif ($module['disk_version'])
+                            <span class="ml-2 rounded-full border border-zinc-300 px-2 py-0.5 text-xs font-semibold text-zinc-500 dark:border-zinc-700">Disk</span>
+                        @endif
+                    </dd>
                 </div>
 
                 <div>
