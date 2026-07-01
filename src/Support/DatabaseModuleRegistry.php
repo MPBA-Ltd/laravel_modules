@@ -218,14 +218,7 @@ class DatabaseModuleRegistry
 
         return [
             'readme' => $this->readFirstExisting($path, ['README.md', 'readme.md'], 7000),
-            'changelog' => $this->readFirstExisting($path, [
-                'changelog.yaml',
-                'CHANGELOG.md',
-                'CHANGELOG',
-                'CHANGELOG.txt',
-                'changelog.md',
-                'changelog.txt',
-            ], 12000),
+            'changelog' => $this->readFirstExisting($path, ['CHANGELOG.md', 'changelog.md', 'changelog.yaml'], 7000),
             'routes' => $this->filesUnder($path, ['Routes/*.php', 'routes/*.php']),
             'migrations' => $this->filesUnder($path, ['Database/Migrations/*.php', 'database/migrations/*.php']),
             'models' => $this->filesUnder($path, ['app/Models/*.php', 'Models/*.php', 'Entities/*.php', 'app/Entities/*.php']),

@@ -167,7 +167,7 @@
 
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                             @forelse ($modules as $module)
-                                <tr class="align-top transition hover:bg-zinc-900/55">
+                                <tr class="align-top transition hover:bg-zinc-50 dark:hover:bg-zinc-950/50">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
                                     </td>
