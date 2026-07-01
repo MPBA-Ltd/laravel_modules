@@ -3,6 +3,7 @@
 namespace mpba\Modules\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use mpba\Modules\Support\DatabaseModuleRegistry;
@@ -25,6 +26,20 @@ class ModuleControlController extends Controller
         return view('modules-control::show', [
             'module' => $this->registry->find($module),
         ]);
+    }
+
+    public function update(Request $request, string $module): RedirectResponse
+    {
+        $data = $request->validate([
+            'description' => ['nullable', 'string', 'max:2000'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:999999'],
+        ]);
+
+        $this->registry->update($module, $data);
+
+        return redirect()
+            ->route('modules.control.show', $module)
+            ->with('status', "{$module} database metadata saved.");
     }
 
     public function sync(): RedirectResponse

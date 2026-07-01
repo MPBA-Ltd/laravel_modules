@@ -21,6 +21,8 @@ return new class extends Migration
             $table->id();
             $table->string('module')->unique();
             $table->boolean('enabled')->default(true);
+            $table->text('description')->nullable();
+            $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }

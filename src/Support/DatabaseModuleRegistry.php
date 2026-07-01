@@ -22,23 +22,13 @@ class DatabaseModuleRegistry
             ->keyBy('module');
 
         return collect($this->modules->all())
-            ->sortBy(fn (Module $module) => $module->get('order', 0))
             ->map(function (Module $module) use ($statuses): array {
-                $status = $statuses->get($module->getName());
-
-                return [
-                    'name' => $module->getName(),
-                    'alias' => $module->getAlias(),
-                    'description' => $module->getDescription(),
-                    'version' => $module->get('version'),
-                    'order' => $module->get('order', 0),
-                    'path' => $module->getPath(),
-                    'requires' => $module->getRequires(),
-                    'enabled' => (bool) ($status?->enabled ?? $module->isEnabled()),
-                    'status_record' => $status,
-                    'module' => $module,
-                ];
+                return $this->mapModule($module, $statuses->get($module->getName()));
             })
+            ->sortBy([
+                fn (array $module) => $module['sort_order'],
+                fn (array $module) => $module['name'],
+            ])
             ->values();
     }
 
@@ -50,21 +40,29 @@ class DatabaseModuleRegistry
         $module = $this->modules->findOrFail($name);
         $status = ModuleStatus::query()->firstOrCreate(
             ['module' => $module->getName()],
-            ['enabled' => $module->isEnabled()]
+            [
+                'enabled' => $module->isEnabled(),
+                'sort_order' => (int) $module->get('order', 0),
+            ]
         );
 
-        return [
-            'name' => $module->getName(),
-            'alias' => $module->getAlias(),
-            'description' => $module->getDescription(),
-            'version' => $module->get('version'),
-            'order' => $module->get('order', 0),
-            'path' => $module->getPath(),
-            'requires' => $module->getRequires(),
-            'enabled' => (bool) $status->enabled,
-            'status_record' => $status,
-            'module' => $module,
-        ];
+        return $this->mapModule($module, $status);
+    }
+
+    public function update(string $name, array $data): void
+    {
+        $module = $this->modules->findOrFail($name);
+
+        ModuleStatus::query()->updateOrCreate(
+            ['module' => $module->getName()],
+            [
+                'enabled' => ModuleStatus::query()
+                    ->where('module', $module->getName())
+                    ->value('enabled') ?? $module->isEnabled(),
+                'description' => $data['description'] ?? null,
+                'sort_order' => (int) ($data['sort_order'] ?? 0),
+            ]
+        );
     }
 
     public function enable(string $name): void
@@ -73,7 +71,10 @@ class DatabaseModuleRegistry
 
         ModuleStatus::query()->updateOrCreate(
             ['module' => $module->getName()],
-            ['enabled' => true]
+            [
+                'enabled' => true,
+                'sort_order' => (int) $module->get('order', 0),
+            ]
         );
 
         $this->modules->enable($module->getName());
@@ -85,7 +86,10 @@ class DatabaseModuleRegistry
 
         ModuleStatus::query()->updateOrCreate(
             ['module' => $module->getName()],
-            ['enabled' => false]
+            [
+                'enabled' => false,
+                'sort_order' => (int) $module->get('order', 0),
+            ]
         );
 
         $this->modules->disable($module->getName());
@@ -96,8 +100,35 @@ class DatabaseModuleRegistry
         foreach ($this->modules->all() as $module) {
             ModuleStatus::query()->firstOrCreate(
                 ['module' => $module->getName()],
-                ['enabled' => $module->isEnabled()]
+                [
+                    'enabled' => $module->isEnabled(),
+                    'sort_order' => (int) $module->get('order', 0),
+                ]
             );
         }
+    }
+
+    protected function mapModule(Module $module, ?ModuleStatus $status): array
+    {
+        return [
+            'name' => $module->getName(),
+            'alias' => $module->getAlias(),
+            'description' => $status?->description,
+            'disk_description' => $module->getDescription(),
+            'version' => $this->moduleVersion($module),
+            'sort_order' => (int) ($status?->sort_order ?? $module->get('order', 0)),
+            'path' => $module->getPath(),
+            'requires' => $module->getRequires(),
+            'enabled' => (bool) ($status?->enabled ?? $module->isEnabled()),
+            'status_record' => $status,
+            'module' => $module,
+        ];
+    }
+
+    protected function moduleVersion(Module $module): ?string
+    {
+        $version = $module->get('version');
+
+        return is_string($version) && $version !== '' ? $version : null;
     }
 }

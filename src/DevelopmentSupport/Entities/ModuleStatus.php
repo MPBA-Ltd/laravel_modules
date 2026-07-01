@@ -26,6 +26,8 @@ class ModuleStatus extends Model
     protected $fillable = [
         'module',
         'enabled',
+        'description',
+        'sort_order',
     ];
 
     /**
@@ -35,5 +37,6 @@ class ModuleStatus extends Model
      */
     protected $casts = [
         'enabled' => 'boolean',
+        'sort_order' => 'integer',
     ];
 }
