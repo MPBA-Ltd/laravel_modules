@@ -24,49 +24,59 @@
         ];
     @endphp
 
-    <div class="space-y-6">
-        <section class="overflow-hidden rounded-2xl border border-blue-900/40 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 p-8 text-white shadow-sm sm:p-10">
-            <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_34rem] lg:items-start">
-                <div class="max-w-3xl">
-                    <p class="text-xs font-black uppercase tracking-[0.34em] text-cyan-300">{{ __('Platform Administration') }}</p>
-                    <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
-                    <p class="mt-5 max-w-2xl text-base font-semibold leading-7 text-blue-50/90 sm:text-lg">
-                        {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
-                    </p>
+
+    <section class="overflow-hidden rounded-2xl border border-slate-700/60 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-8 py-8 shadow-2xl shadow-slate-950/30 sm:px-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(28rem,35rem)] lg:items-start">
+            <div class="min-w-0">
+                <p class="text-xs font-black uppercase tracking-[0.30em] text-cyan-300">
+                    {{ __('Platform Administration') }}
+                </p>
+
+                <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl">
+                    {{ __('Module Control') }}
+                </h1>
+
+                <p class="mt-5 max-w-3xl text-base font-semibold leading-7 text-blue-50/85 sm:text-lg">
+                    {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
+                </p>
+            </div>
+
+            <div class="rounded-2xl border border-white/20 bg-slate-950/30 p-6 shadow-xl backdrop-blur">
+                <div class="flex items-start justify-between gap-4">
+                    <span class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+                        <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
+                    </span>
+
+                    <span class="rounded-full border border-white/30 px-4 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.24em] text-white/90">
+                        {{ __('Database Backed') }}
+                    </span>
                 </div>
 
-                <div class="rounded-2xl border border-white/25 bg-slate-950/25 p-5 shadow-sm ring-1 ring-white/10 backdrop-blur lg:mt-1">
-                    <div class="flex items-start justify-between gap-4">
-                        <span class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/60 bg-emerald-400/10 text-emerald-200 shadow-sm">
-                            <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
-                        </span>
-                        <span class="rounded-full border border-white/35 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-white/90">
-                            {{ __('Database Backed') }}
-                        </span>
-                    </div>
+                <div class="mt-8 grid grid-cols-3 divide-x divide-white/15">
+                    <a href="{{ route('modules.control.index') }}" class="group px-4 first:pl-0 last:pr-0">
+                        <div class="text-4xl font-black text-white group-hover:text-blue-200">{{ $stats['installed'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Installed') }}</div>
+                    </a>
 
-                    <div class="mt-8 grid grid-cols-3 divide-x divide-white/15">
-                        <div class="pr-5">
-                            <div class="text-4xl font-black text-white">{{ $stats['installed'] }}</div>
-                            <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/90">{{ __('Installed') }}</div>
-                        </div>
-                        <div class="px-5">
-                            <div class="text-4xl font-black text-emerald-300">{{ $stats['enabled'] }}</div>
-                            <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/90">{{ __('Enabled') }}</div>
-                        </div>
-                        <div class="pl-5">
-                            <div class="text-4xl font-black text-red-300">{{ $stats['disabled'] }}</div>
-                            <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/90">{{ __('Disabled') }}</div>
-                        </div>
-                    </div>
+                    <a href="{{ route('modules.control.index', ['filter' => 'enabled']) }}" class="group px-4 first:pl-0 last:pr-0">
+                        <div class="text-4xl font-black text-emerald-300 group-hover:text-emerald-200">{{ $stats['enabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Enabled') }}</div>
+                    </a>
 
-                    <div class="mt-6 h-2 rounded-full bg-white/10">
-                        <div class="h-2 rounded-full bg-emerald-400/70" style="width: {{ $stats['installed'] > 0 ? round(($stats['enabled'] / max($stats['installed'], 1)) * 100) : 0 }}%"></div>
-                    </div>
+                    <a href="{{ route('modules.control.index', ['filter' => 'disabled']) }}" class="group px-4 first:pl-0 last:pr-0">
+                        <div class="text-4xl font-black text-red-300 group-hover:text-red-200">{{ $stats['disabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100/85">{{ __('Disabled') }}</div>
+                    </a>
+                </div>
+
+                <div class="mt-6 h-2 rounded-full bg-white/10">
+                    <div class="h-2 rounded-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400" style="width: {{ $stats['installed'] > 0 ? min(100, round(($stats['enabled'] / max(1, $stats['installed'])) * 100)) : 0 }}%"></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+    <div class="space-y-6">
         @foreach (['status' => 'emerald', 'warning' => 'amber', 'error' => 'red'] as $flash => $tone)
             @if (session($flash))
                 <div class="rounded-2xl border px-4 py-3 text-sm font-medium {{ $toneClasses[$tone] ?? $toneClasses['blue'] }}">
@@ -98,9 +108,9 @@
         <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
             <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
                 <div>
-                    <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">{{ __('Installed modules') }}</h2>
+                    <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Installed modules</h2>
                     <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                        {{ __('Descriptions, versions, display metadata and sort order are stored in the database only.') }}
+                        Descriptions, versions, display metadata and sort order are stored in the database only.
                     </p>
                 </div>
 
@@ -120,21 +130,21 @@
                             name="sort"
                             class="rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
                         >
-                            <option value="order" @selected($sort === 'order')>{{ __('Sort: Order') }}</option>
-                            <option value="name" @selected($sort === 'name')>{{ __('Sort: Name') }}</option>
-                            <option value="status" @selected($sort === 'status')>{{ __('Sort: Status') }}</option>
-                            <option value="version" @selected($sort === 'version')>{{ __('Sort: Version') }}</option>
-                            <option value="updated" @selected($sort === 'updated')>{{ __('Sort: Last updated') }}</option>
+                            <option value="order" @selected($sort === 'order')>Sort: Order</option>
+                            <option value="name" @selected($sort === 'name')>Sort: Name</option>
+                            <option value="status" @selected($sort === 'status')>Sort: Status</option>
+                            <option value="version" @selected($sort === 'version')>Sort: Version</option>
+                            <option value="updated" @selected($sort === 'updated')>Sort: Last updated</option>
                         </select>
-                        <button type="submit" class="rounded-xl border border-blue-500/40 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
-                            {{ __('Search') }}
+                        <button type="submit" class="rounded-xl border border-blue-500/40 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                            Search
                         </button>
                     </form>
 
                     <form method="POST" action="{{ route('modules.control.sync') }}">
                         @csrf
-                        <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
-                            {{ __('Sync Database') }}
+                        <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
+                            Sync Database
                         </button>
                     </form>
                 </div>
@@ -151,8 +161,8 @@
                 @endforeach
 
                 @if ($filter !== 'all' || $search !== '')
-                    <a href="{{ route('modules.control.index') }}" class="rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold text-zinc-600 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800">
-                        {{ __('Clear filters') }}
+                    <a href="{{ route('modules.control.index') }}" class="rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800">
+                        Clear filters
                     </a>
                 @endif
             </div>
@@ -160,12 +170,12 @@
 
         <div class="flex flex-col gap-1 text-sm text-zinc-500 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                {{ __('Showing') }} {{ $modules->firstItem() ?? 0 }}-{{ $modules->lastItem() ?? 0 }} {{ __('of') }} {{ $modules->total() }} {{ __('modules') }}.
+                Showing {{ $modules->firstItem() ?? 0 }}-{{ $modules->lastItem() ?? 0 }} of {{ $modules->total() }} modules.
                 @if ($search !== '')
-                    {{ __('Search') }}: <span class="font-semibold text-zinc-800 dark:text-zinc-200">{{ $search }}</span>
+                    Search: <span class="font-semibold text-zinc-800 dark:text-zinc-200">{{ $search }}</span>
                 @endif
             </div>
-            <div>{{ __('4 modules per page') }}</div>
+            <div>4 modules per page</div>
         </div>
 
         <form method="POST" action="{{ route('modules.control.bulk') }}" class="space-y-4">
@@ -173,102 +183,116 @@
 
             <div class="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 sm:flex-row sm:items-center sm:justify-between">
                 <div class="text-sm text-zinc-600 dark:text-zinc-400">
-                    {{ __('Select modules on this page and apply a bulk action.') }}
+                    Select modules on this page and apply a bulk action.
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <select name="action" class="rounded-xl border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100">
-                        <option value="enable">{{ __('Enable selected') }}</option>
-                        <option value="disable">{{ __('Disable selected') }}</option>
+                        <option value="enable">Enable selected</option>
+                        <option value="disable">Disable selected</option>
                     </select>
-                    <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
-                        {{ __('Apply') }}
+                    <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
+                        Apply
                     </button>
                 </div>
             </div>
 
             <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800">
-                    <thead class="bg-zinc-50 dark:bg-zinc-950/70">
-                        <tr>
-                            <th class="w-12 px-4 py-4 text-left">
-                                <span class="sr-only">{{ __('Select') }}</span>
-                            </th>
-                            <th class="px-4 py-4 text-left text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Module') }}</th>
-                            <th class="px-4 py-4 text-left text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Description') }}</th>
-                            <th class="px-4 py-4 text-left text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Version') }}</th>
-                            <th class="px-4 py-4 text-left text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Status') }}</th>
-                            <th class="px-4 py-4 text-left text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Last updated') }}</th>
-                            <th class="px-4 py-4 text-right text-xs font-black uppercase tracking-wide text-zinc-500">{{ __('Actions') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
-                        @forelse ($modules as $module)
-                            <tr class="transition hover:bg-zinc-50 dark:hover:bg-zinc-800/35">
-                                <td class="px-4 py-5 align-top">
-                                    <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
-                                </td>
-                                <td class="px-4 py-5 align-top">
-                                    <div class="flex items-start gap-4">
-                                        <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-950 text-white shadow-sm dark:border-zinc-700 dark:bg-zinc-950">
-                                            <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }}" aria-hidden="true"></i>
-                                        </span>
-                                        <div class="min-w-0">
-                                            <div class="font-bold text-zinc-950 dark:text-zinc-100">{{ $module['name'] }}</div>
-                                            <div class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{{ $module['alias'] }}</div>
-                                            <div class="mt-2 flex flex-wrap gap-2">
-                                                <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-xs font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ $module['category'] }}</span>
-                                                <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-xs font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ $module['vendor_type'] }}</span>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800">
+                        <thead class="bg-zinc-50 dark:bg-zinc-950/70">
+                            <tr>
+                                <th class="w-10 px-4 py-3 text-left"><span class="sr-only">Select</span></th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">Module</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">Description</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">Version</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">Status</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">Last Updated</th>
+                                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-zinc-500">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
+                            @forelse ($modules as $module)
+                                <tr class="align-top transition hover:bg-zinc-50 dark:hover:bg-zinc-950/50">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <div class="flex gap-3">
+                                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">
+                                                <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }}" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div class="font-semibold text-zinc-950 dark:text-zinc-100">{{ $module['name'] }}</div>
+                                                <div class="mt-1 text-xs text-zinc-500">{{ $module['alias'] }}</div>
+                                                <div class="mt-2 flex flex-wrap gap-1.5">
+                                                    <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-[11px] font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ $module['category'] }}</span>
+                                                    <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-[11px] font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ $module['vendor_type'] }}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="max-w-xl px-4 py-5 align-top text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                                    {{ $module['description'] ?: 'No database description saved yet.' }}
-                                </td>
-                                <td class="px-4 py-5 align-top text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                                    {{ $module['version'] ?: '—' }}
-                                </td>
-                                <td class="px-4 py-5 align-top">
-                                    @if ($module['enabled'])
-                                        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-black text-emerald-700 dark:text-emerald-300">
-                                            <i class="fa-solid fa-check-circle" aria-hidden="true"></i>{{ __('Enabled') }}
-                                        </span>
-                                    @else
-                                        <span class="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1 text-xs font-black text-red-700 dark:text-red-300">
-                                            <i class="fa-solid fa-circle-pause" aria-hidden="true"></i>{{ __('Disabled') }}
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-5 align-top text-sm text-zinc-500 dark:text-zinc-400">
-                                    {{ $module['updated_at']?->format('d M Y H:i') ?? '—' }}
-                                </td>
-                                <td class="px-4 py-5 align-top">
-                                    <div class="flex justify-end gap-2">
-                                        <a href="{{ route('modules.control.show', $module['name']) }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
-                                            {{ __('View') }}
-                                        </a>
-
-                                        @if ($module['enabled'])
-                                            <button formaction="{{ route('modules.control.disable', $module['name']) }}" formmethod="POST" type="submit" class="inline-flex items-center justify-center rounded-xl border border-red-500/40 bg-red-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400/50">
-                                                {{ __('Disable') }}
-                                            </button>
-                                        @else
-                                            <button formaction="{{ route('modules.control.enable', $module['name']) }}" formmethod="POST" type="submit" class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
-                                                {{ __('Enable') }}
-                                            </button>
+                                    </td>
+                                    <td class="max-w-md px-4 py-4">
+                                        <p class="line-clamp-3 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
+                                            {{ $module['description'] ?: 'No database description saved.' }}
+                                        </p>
+                                        @if ($module['has_missing_dependencies'])
+                                            <div class="mt-2 rounded-lg border border-orange-500/30 bg-orange-500/10 px-2 py-1 text-xs font-semibold text-orange-700 dark:text-orange-300">
+                                                Missing: {{ implode(', ', $module['missing_dependencies']) }}
+                                            </div>
                                         @endif
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="px-4 py-12 text-center text-sm text-zinc-500 dark:text-zinc-400">
-                                    {{ __('No modules matched your filters.') }}
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300">
+                                        <div>{{ $module['version'] ?: '—' }}</div>
+                                        @if ($module['has_update'])
+                                            <span class="mt-1 inline-flex rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300">Update available</span>
+                                        @elseif ($module['database_version'])
+                                            <span class="mt-1 inline-flex text-xs text-blue-600 dark:text-blue-300">Database</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        @if ($module['enabled'])
+                                            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Enabled
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-300">
+                                                <i class="fa-solid fa-circle-pause" aria-hidden="true"></i> Disabled
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-zinc-600 dark:text-zinc-400">
+                                        {{ $module['updated_at']?->format('d M Y H:i') ?? '—' }}
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">View</a>
+                                            @if ($module['enabled'])
+                                                <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
+                                                    Disable
+                                                </button>
+                                            @else
+                                                <button type="submit" formaction="{{ route('modules.control.enable', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700">
+                                                    Enable
+                                                </button>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="px-4 py-12 text-center">
+                                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950">
+                                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mt-3 font-semibold text-zinc-900 dark:text-zinc-100">No modules found</div>
+                                        <div class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Adjust the search or filter and try again.</div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </form>
 
