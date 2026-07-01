@@ -1,23 +1,21 @@
 <x-layouts.app :title="__('Module Control')">
-    <div class="overflow-hidden rounded-[1.75rem] border border-zinc-800 bg-gradient-to-r from-slate-950 via-blue-950 to-cyan-700 px-6 py-8 shadow-sm sm:px-8 lg:px-10">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+    <section class="overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-800 px-8 py-8 shadow-sm sm:px-10">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div class="min-w-0">
-                <p class="text-[0.72rem] font-black uppercase tracking-[0.32em] text-cyan-300">MPBA WMS</p>
-                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">Module Control</h1>
-                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200 sm:text-lg">
-                    Manage installed modules, database metadata, dependencies and activation state.
+                <p class="text-xs font-black uppercase tracking-[0.34em] text-cyan-300">{{ __('Module Control') }}</p>
+                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
+                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200">
+                    {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
                 </p>
             </div>
 
-            <div class="hidden shrink-0 items-center justify-end gap-5 lg:flex">
-                <div class="h-16 w-px bg-white/15"></div>
-
-                <div class="inline-flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur">
-                    <i class="fa-solid fa-puzzle-piece text-3xl" aria-hidden="true"></i>
+            <div class="flex shrink-0 items-center justify-end">
+                <div class="inline-flex h-24 w-24 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur">
+                    <i class="fa-solid fa-puzzle-piece text-4xl" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     @php
         $filterCards = [
@@ -111,7 +109,7 @@
 
                     <form method="POST" action="{{ route('modules.control.sync') }}">
                         @csrf
-                        <button type="submit" class="rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-2 text-sm font-semibold text-zinc-100 shadow-sm transition hover:border-zinc-600 hover:bg-zinc-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-600/40">
+                        <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
                             Sync Database
                         </button>
                     </form>
@@ -122,14 +120,14 @@
                 @foreach ($secondaryFilters as $key => $label)
                     <a
                         href="{{ route('modules.control.index', array_filter(['filter' => $key, 'search' => $search, 'sort' => $sort === 'order' ? null : $sort])) }}"
-                        class="rounded-full border px-3 py-1 text-xs font-semibold transition {{ $filter === $key ? 'border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-blue-300' : 'border-zinc-700 bg-zinc-950/70 text-zinc-300 hover:border-zinc-600 hover:bg-zinc-800 hover:text-white' }}"
+                        class="rounded-full border px-3 py-1 text-xs font-semibold transition {{ $filter === $key ? 'border-blue-500/40 bg-blue-500/10 text-blue-700 dark:text-blue-300' : 'border-zinc-300 text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800' }}"
                     >
                         {{ $label }}
                     </a>
                 @endforeach
 
                 @if ($filter !== 'all' || $search !== '')
-                    <a href="{{ route('modules.control.index') }}" class="rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800">
+                    <a href="{{ route('modules.control.index') }}" class="rounded-full border border-zinc-300 px-3 py-1 text-xs font-semibold text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800">
                         Clear filters
                     </a>
                 @endif
@@ -158,7 +156,7 @@
                         <option value="enable">Enable selected</option>
                         <option value="disable">Disable selected</option>
                     </select>
-                    <button type="submit" class="rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-2 text-sm font-semibold text-zinc-100 shadow-sm transition hover:border-zinc-600 hover:bg-zinc-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-600/40">
+                    <button type="submit" class="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800">
                         Apply
                     </button>
                 </div>
@@ -181,7 +179,7 @@
 
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                             @forelse ($modules as $module)
-                                <tr class="align-top transition hover:!bg-zinc-800/45">
+                                <tr class="align-top transition hover:bg-zinc-900/40">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
                                     </td>
@@ -234,7 +232,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="inline-flex items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold !text-white shadow-sm transition hover:border-emerald-400/60 hover:!bg-emerald-500 hover:!text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable

@@ -1,29 +1,29 @@
 <x-layouts.app :title="$module['name'].' Module'">
-    <div class="overflow-hidden rounded-[1.75rem] border border-zinc-800 bg-gradient-to-r from-slate-950 via-blue-950 to-cyan-700 px-6 py-8 shadow-sm sm:px-8 lg:px-10">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+    <section class="overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-800 px-8 py-8 shadow-sm sm:px-10">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div class="min-w-0">
-                <p class="text-[0.72rem] font-black uppercase tracking-[0.32em] text-cyan-300">Module Control</p>
-                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} Module</h1>
-                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200 sm:text-lg">
-                    Database metadata, dependencies, developer information and activation controls.
+                <p class="text-xs font-black uppercase tracking-[0.34em] text-cyan-300">{{ __('Module Control') }}</p>
+                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} {{ __('Module') }}</h1>
+                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200">
+                    {{ __('Database metadata, dependencies, developer information and activation controls.') }}
                 </p>
             </div>
 
-            <div class="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-end lg:gap-5">
+            <div class="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
                 <a href="{{ route('modules.control.index') }}" wire:navigate
-                   class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-300/40 bg-emerald-600 px-6 py-3 text-sm font-black !text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-300/20 transition hover:border-emerald-200/60 hover:!bg-emerald-500 hover:!text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+                   class="inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-emerald-400/40 bg-emerald-600 px-6 py-3 text-sm font-black text-white shadow-lg shadow-emerald-950/30 ring-1 ring-white/10 transition hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/60">
                     <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
                     <span>{{ __('Back to Module Control') }}</span>
                 </a>
 
-                <div class="hidden h-16 w-px bg-white/15 lg:block"></div>
+                <div class="hidden h-16 w-px bg-white/15 sm:block"></div>
 
-                <div class="hidden h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur lg:inline-flex">
+                <div class="inline-flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/20 bg-white/10 text-emerald-300 shadow-sm ring-1 ring-white/10 backdrop-blur">
                     <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-3xl" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     @php
         $fileGroups = [
@@ -95,7 +95,6 @@
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Database metadata</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">These fields are saved only in the module_statuses table.</p>
                         </div>
-                        
                     </div>
 
                     <form method="POST" action="{{ route('modules.control.update', $module['name']) }}" class="mt-6 space-y-5">
@@ -165,70 +164,70 @@
                     </form>
                 </div>
 
-                <details class="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-                    <summary class="flex cursor-pointer list-none items-center justify-between gap-3 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-4 py-3 text-white marker:hidden sm:px-5">
-                        <div class="flex min-w-0 items-center gap-3">
-                            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/25 text-white ring-1 ring-white/20">
-                                <i class="fa-solid fa-code text-sm" aria-hidden="true"></i>
-                            </span>
-
-                            <div class="min-w-0">
-                                <p class="text-[0.65rem] font-black uppercase tracking-[0.18em] text-blue-200">Developer</p>
-                                <h2 class="truncate text-base font-extrabold tracking-tight">Developer files</h2>
+                <div class="grid gap-6 lg:grid-cols-2">
+                    <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                        <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Dependencies</h2>
+                        <div class="mt-4 space-y-3 text-sm">
+                            <div>
+                                <div class="text-xs font-semibold uppercase text-zinc-500">Required modules</div>
+                                <div class="mt-1 text-zinc-800 dark:text-zinc-200">{{ empty($module['requires']) ? 'None' : implode(', ', $module['requires']) }}</div>
                             </div>
-                        </div>
-
-                        <span class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white/15 px-3 py-1.5 text-xs font-extrabold ring-1 ring-white/20">
-                            Files
-                            <i class="fa-solid fa-chevron-right text-xs transition group-open:rotate-90" aria-hidden="true"></i>
-                        </span>
-                    </summary>
-
-                    <div class="p-4 sm:p-5">
-                        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                            @foreach ($fileGroups as $label => $files)
-                                <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950/60">
-                                    <div class="flex items-center justify-between gap-3">
-                                        <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ $label }}</h3>
-                                        <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-xs font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ count($files) }}</span>
-                                    </div>
-                                    <ul class="mt-3 max-h-36 space-y-1 overflow-auto text-xs text-zinc-600 dark:text-zinc-400">
-                                        @forelse ($files as $file)
-                                            <li class="break-all">{{ $file }}</li>
-                                        @empty
-                                            <li>None found.</li>
-                                        @endforelse
-                                    </ul>
-                                </div>
-                            @endforeach
+                            <div>
+                                <div class="text-xs font-semibold uppercase text-zinc-500">Missing dependencies</div>
+                                <div class="mt-1 {{ $module['has_missing_dependencies'] ? 'text-orange-700 dark:text-orange-300' : 'text-zinc-800 dark:text-zinc-200' }}">{{ empty($module['missing_dependencies']) ? 'None' : implode(', ', $module['missing_dependencies']) }}</div>
+                            </div>
+                            <div>
+                                <div class="text-xs font-semibold uppercase text-zinc-500">Enabled dependents</div>
+                                <div class="mt-1 {{ $module['can_disable'] ? 'text-zinc-800 dark:text-zinc-200' : 'text-orange-700 dark:text-orange-300' }}">{{ empty($module['enabled_dependents']) ? 'None' : implode(', ', $module['enabled_dependents']) }}</div>
+                            </div>
                         </div>
                     </div>
-                </details>
+
+                    <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                        <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Activation</h2>
+                        <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Disabling is blocked when another enabled module depends on this module.</p>
+                        <div class="mt-5">
+                            @if ($module['enabled'])
+                                <form method="POST" action="{{ route('modules.control.disable', $module['name']) }}">
+                                    @csrf
+                                    <button type="submit" class="w-full rounded-xl border border-red-500/40 bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50" @disabled(! $module['can_disable'])>Disable Module</button>
+                                </form>
+                            @else
+                                <form method="POST" action="{{ route('modules.control.enable', $module['name']) }}">
+                                    @csrf
+                                    <button type="submit" class="w-full rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700">Enable Module</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                    <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer files</h2>
+                    <div class="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        @foreach ($fileGroups as $label => $files)
+                            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950/60">
+                                <div class="flex items-center justify-between gap-3">
+                                    <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ $label }}</h3>
+                                    <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-xs font-semibold text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">{{ count($files) }}</span>
+                                </div>
+                                <ul class="mt-3 max-h-36 space-y-1 overflow-auto text-xs text-zinc-600 dark:text-zinc-400">
+                                    @forelse ($files as $file)
+                                        <li class="break-all">{{ $file }}</li>
+                                    @empty
+                                        <li>None found.</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
                 <div class="grid gap-6 lg:grid-cols-2">
-                    <details class="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-                        <summary class="flex cursor-pointer list-none items-center justify-between gap-3 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-4 py-3 text-white marker:hidden sm:px-5">
-                            <div class="flex min-w-0 items-center gap-3">
-                                <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/25 text-white ring-1 ring-white/20">
-                                    <i class="fa-solid fa-book-open text-sm" aria-hidden="true"></i>
-                                </span>
-
-                                <div class="min-w-0">
-                                    <p class="text-[0.65rem] font-black uppercase tracking-[0.18em] text-blue-200">Documentation</p>
-                                    <h2 class="truncate text-base font-extrabold tracking-tight">README preview</h2>
-                                </div>
-                            </div>
-
-                            <span class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white/15 px-3 py-1.5 text-xs font-extrabold ring-1 ring-white/20">
-                                README
-                                <i class="fa-solid fa-chevron-right text-xs transition group-open:rotate-90" aria-hidden="true"></i>
-                            </span>
-                        </summary>
-
-                        <div class="p-4 sm:p-5">
-                            <pre class="max-h-96 overflow-auto whitespace-pre-wrap rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-xs leading-6 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">{{ $module['readme'] ?: 'No README found.' }}</pre>
-                        </div>
-                    </details>
+                    <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                        <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">README preview</h2>
+                        <pre class="mt-4 max-h-96 overflow-auto whitespace-pre-wrap rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-xs leading-6 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">{{ $module['readme'] ?: 'No README found.' }}</pre>
+                    </div>
 
                     <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                         <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Changelog preview</h2>
@@ -238,37 +237,18 @@
             </div>
 
             <aside class="space-y-6">
-                <details class="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-                    <summary class="flex cursor-pointer list-none items-center justify-between gap-3 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-4 py-3 text-white marker:hidden sm:px-5">
-                        <div class="flex min-w-0 items-center gap-3">
-                            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/25 text-white ring-1 ring-white/20">
-                                <i class="fa-solid fa-terminal text-sm" aria-hidden="true"></i>
-                            </span>
-
-                            <div class="min-w-0">
-                                <p class="text-[0.65rem] font-black uppercase tracking-[0.18em] text-blue-200">Developer</p>
-                                <h2 class="truncate text-base font-extrabold tracking-tight">Developer information</h2>
-                            </div>
-                        </div>
-
-                        <span class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white/15 px-3 py-1.5 text-xs font-extrabold ring-1 ring-white/20">
-                            Details
-                            <i class="fa-solid fa-chevron-right text-xs transition group-open:rotate-90" aria-hidden="true"></i>
-                        </span>
-                    </summary>
-
-                    <div class="p-4 sm:p-5">
-                        <dl class="space-y-4 text-sm">
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Installed path</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['path'] }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Namespace</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['namespace'] ?: '—' }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Composer package</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['composer_name'] ?: '—' }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Git commit</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['git_commit'] ?: '—' }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Build date</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['build_date'] ?: '—' }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Database record</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">ID {{ $module['status_record']?->id ?? '—' }}</dd></div>
-                            <div><dt class="text-xs font-semibold uppercase text-zinc-500">Last updated</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['updated_at']?->format('d M Y H:i') ?? '—' }}</dd></div>
-                        </dl>
-                    </div>
-                </details>
+                <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                    <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer information</h2>
+                    <dl class="mt-5 space-y-4 text-sm">
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Installed path</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['path'] }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Namespace</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['namespace'] ?: '—' }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Composer package</dt><dd class="mt-1 break-all text-zinc-900 dark:text-zinc-100">{{ $module['composer_name'] ?: '—' }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Git commit</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['git_commit'] ?: '—' }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Build date</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['build_date'] ?: '—' }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Database record</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">ID {{ $module['status_record']?->id ?? '—' }}</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase text-zinc-500">Last updated</dt><dd class="mt-1 text-zinc-900 dark:text-zinc-100">{{ $module['updated_at']?->format('d M Y H:i') ?? '—' }}</dd></div>
+                    </dl>
+                </div>
 
                 <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                     <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Disk metadata</h2>
