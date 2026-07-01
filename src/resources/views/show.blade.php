@@ -10,267 +10,197 @@
     @endphp
 
     <style>
-        .mc-shell {
-            --mc-card: rgb(24 24 27);
-            --mc-card-soft: rgb(39 39 42 / .55);
-            --mc-border: rgb(63 63 70);
-            --mc-muted: rgb(161 161 170);
-            --mc-white: rgb(244 244 245);
-            --mc-emerald: rgb(52 211 153);
-            --mc-blue: rgb(96 165 250);
-            --mc-red: rgb(252 165 165);
-        }
-        .mc-hero {
+        .mc-show-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(26rem, 34rem);
+            align-items: start;
+            gap: 2rem;
             overflow: hidden;
-            border-radius: 1.5rem;
-            border: 1px solid rgb(63 63 70);
-            background: linear-gradient(135deg, #020617 0%, #0f172a 45%, #172554 100%);
-            color: #fff;
-            box-shadow: 0 1px 2px rgb(0 0 0 / .35);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(45, 79, 137, .72);
+            background:
+                radial-gradient(circle at 24% 18%, rgba(20, 184, 166, .16), transparent 32%),
+                linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
+            padding: 1.25rem 2rem;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
-        .mc-hero-inner {
-            padding: 1.75rem 1.5rem;
-        }
-        @media (min-width: 1024px) {
-            .mc-hero-inner {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1.5rem;
-            }
-        }
-        .mc-hero-eyebrow {
-            font-size: .75rem;
-            line-height: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
+
+        .mc-show-kicker {
+            margin: 0 0 .55rem;
+            color: #5ef7d0;
+            font-size: .72rem;
+            font-weight: 950;
             letter-spacing: .28em;
-            color: rgb(191 219 254);
+            text-transform: uppercase;
         }
-        .mc-hero-title {
-            margin-top: .5rem;
-            font-size: 1.875rem;
-            line-height: 2.25rem;
-            font-weight: 650;
-            letter-spacing: -.025em;
-            color: white;
+
+        .mc-show-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(1.9rem, 3vw, 2.75rem);
+            font-weight: 950;
+            letter-spacing: -.045em;
+            line-height: .98;
         }
-        .mc-hero-copy {
-            margin-top: .5rem;
-            max-width: 48rem;
-            font-size: .875rem;
-            line-height: 1.55rem;
-            color: rgb(219 234 254 / .9);
+
+        .mc-show-subtitle {
+            margin: .7rem 0 0;
+            max-width: 41rem;
+            color: rgba(241, 245, 249, .9);
+            font-size: clamp(.92rem, 1.25vw, 1.05rem);
+            font-weight: 700;
+            line-height: 1.42;
         }
-        .mc-hero-panel {
-            width: min(100%, 28rem);
-            margin-top: 1rem;
-            border-radius: 1rem;
-            border: 1px solid rgb(255 255 255 / .16);
-            background: rgb(15 23 42 / .52);
-            padding: 1rem;
+
+        .mc-show-side {
+            justify-self: end;
+            width: min(100%, 33.5rem);
         }
-        @media (min-width: 1024px) {
-            .mc-hero-panel { margin-top: 0; }
-        }
-        .mc-hero-topline {
+
+        .mc-show-actions {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             gap: 1rem;
         }
-        .mc-hero-icon {
+
+        .mc-show-icon {
             display: inline-flex;
             height: 3rem;
             width: 3rem;
             align-items: center;
             justify-content: center;
-            border-radius: .875rem;
-            border: 1px solid rgb(52 211 153 / .65);
-            background: rgb(52 211 153 / .12);
-            color: rgb(167 243 208);
-            box-shadow: inset 0 1px 0 rgb(255 255 255 / .08);
+            border-radius: .85rem;
+            border: 1px solid rgba(94, 234, 212, .58);
+            background: rgba(20, 184, 166, .10);
+            color: #a7f3d0;
+            font-size: 1.1rem;
         }
-        .mc-hero-pill {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9999px;
-            border: 1px solid rgb(255 255 255 / .2);
-            background: rgb(255 255 255 / .08);
-            padding: .45rem .95rem;
-            font-size: .7rem;
-            font-weight: 900;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: rgb(241 245 249);
-            white-space: nowrap;
-        }
-        .mc-hero-stats {
-            margin-top: 1.25rem;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-        .mc-hero-stat {
-            padding: 0 .85rem;
-            border-left: 1px solid rgb(255 255 255 / .16);
-        }
-        .mc-hero-stat:first-child {
-            border-left: 0;
-            padding-left: 0;
-        }
-        .mc-hero-stat-value {
-            font-size: 1.875rem;
-            line-height: 2.25rem;
-            font-weight: 900;
-            color: white;
-        }
-        .mc-hero-stat-label {
-            margin-top: .15rem;
-            font-size: .7rem;
-            font-weight: 900;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: rgb(226 232 240);
-        }
-        .mc-hero-action-row {
-            margin-top: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1rem;
-        }
-        @media (min-width: 1024px) {
-            .mc-hero-action-row { margin-top: 0; justify-content: flex-end; }
-        }
-        .mc-hero-action-icon {
-            display: inline-flex;
-            height: 3.25rem;
-            width: 3.25rem;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            border: 1px solid rgb(52 211 153 / .55);
-            background: rgb(52 211 153 / .10);
-            color: rgb(110 231 183);
-        }
-        .mc-hero-action-divider {
-            height: 3.25rem;
+
+        .mc-show-divider {
+            height: 3rem;
             width: 1px;
-            background: rgb(255 255 255 / .18);
+            background: rgba(226, 232, 240, .22);
         }
-        .mc-back-button,
-        .mc-back-button:visited {
+
+        .mc-show-back,
+        .mc-show-back:visited {
             display: inline-flex;
-            min-height: 3.25rem;
+            min-height: 3rem;
+            min-width: 15.5rem;
             align-items: center;
             justify-content: center;
-            gap: .7rem;
-            border-radius: .9rem;
-            border: 1px solid rgb(52 211 153 / .55);
-            background: rgb(16 185 129 / .08) !important;
-            padding: .75rem 1.6rem;
-            color: rgb(52 211 153) !important;
-            font-size: .875rem;
-            font-weight: 900;
-            text-decoration: none !important;
-            box-shadow: none !important;
-            transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
-            white-space: nowrap;
+            gap: 1rem;
+            border-radius: .85rem;
+            border: 1px solid rgba(16, 185, 129, .62);
+            background: rgba(5, 150, 105, .06);
+            color: #5ef7b7;
+            font-size: .86rem;
+            font-weight: 950;
+            text-decoration: none;
+            transition: background .15s ease, border-color .15s ease, color .15s ease;
         }
-        .mc-back-button:hover,
-        .mc-back-button:focus {
-            background: rgb(16 185 129 / .16) !important;
-            border-color: rgb(110 231 183 / .8) !important;
-            color: rgb(167 243 208) !important;
-            transform: translateY(-1px);
+
+        .mc-show-back:hover,
+        .mc-show-back:focus {
+            background: rgba(5, 150, 105, .16);
+            border-color: rgba(94, 234, 212, .82);
+            color: #a7f3d0;
+            outline: none;
         }
-        .mc-mini-status {
-            width: min(100%, 28rem);
-            border-radius: 1rem;
-            border: 1px solid rgb(255 255 255 / .14);
-            background: rgb(15 23 42 / .45);
-            padding: 1rem;
+
+        .mc-show-status-panel {
+            margin-top: .9rem;
+            border-radius: 1.05rem;
+            border: 1px solid rgba(148, 163, 184, .26);
+            background: rgba(2, 6, 23, .28);
+            padding: .85rem 1.1rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 14px 28px rgba(0,0,0,.18);
         }
-        .mc-mini-status-grid {
+
+        .mc-show-status-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        .mc-mini-status-cell {
-            padding: 0 1rem;
-            border-left: 1px solid rgb(255 255 255 / .16);
+
+        .mc-show-stat {
+            padding: .1rem 1.1rem;
+            border-left: 1px solid rgba(226, 232, 240, .22);
         }
-        .mc-mini-status-cell:first-child { border-left: 0; padding-left: 0; }
-        .mc-row,
-        .mc-row:hover,
-        .mc-row:focus-within {
-            background: rgb(24 24 27 / 0.68) !important;
-            color: inherit !important;
+
+        .mc-show-stat:first-child {
+            padding-left: 0;
+            border-left: 0;
         }
-        .mc-row:hover {
-            background: rgb(39 39 42 / 0.72) !important;
+
+        .mc-show-stat-label {
+            color: rgba(226, 232, 240, .88);
+            font-size: .68rem;
+            font-weight: 950;
+            letter-spacing: .18em;
+            text-transform: uppercase;
         }
-        .mc-view-button,
-        .mc-view-button:hover,
-        .mc-view-button:focus,
-        .mc-view-button:visited {
-            background: rgb(22 163 74) !important;
-            border-color: rgb(34 197 94 / 0.65) !important;
-            color: #fff !important;
-            text-decoration: none !important;
+
+        .mc-show-stat-value {
+            margin-top: .4rem;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 950;
+            line-height: 1;
         }
-        .mc-view-button:hover,
-        .mc-view-button:focus {
-            background: rgb(21 128 61) !important;
-            color: #fff !important;
+
+        .mc-show-stat-value.is-enabled { color: #5ef7b7; }
+        .mc-show-stat-value.is-disabled { color: #fb7185; }
+
+        @media (max-width: 1100px) {
+            .mc-show-hero { grid-template-columns: 1fr; }
+            .mc-show-side { justify-self: stretch; width: 100%; }
+            .mc-show-actions { justify-content: flex-start; flex-wrap: wrap; }
         }
-        .mc-safe-button:hover,
-        .mc-safe-button:focus {
-            color: #fff !important;
-        }
-        .mc-shell table a:hover,
-        .mc-shell table button:hover {
-            color: #fff !important;
+
+        @media (max-width: 640px) {
+            .mc-show-hero { padding: 1.05rem; }
+            .mc-show-back { min-width: 0; width: 100%; }
+            .mc-show-actions { gap: 1rem; }
         }
     </style>
 
-    <div class="mc-shell space-y-6">
-        <section class="mc-hero">
-            <div class="mc-hero-inner">
-                <div>
-                    <p class="mc-hero-eyebrow">Module Control</p>
-                    <h1 class="mc-hero-title">{{ $module['name'] }} Module</h1>
-                    <p class="mc-hero-copy">
-                        Database metadata, dependencies, developer information and activation controls.
-                    </p>
+    <div class="space-y-6">
+        <section class="mc-show-hero">
+            <div class="mc-show-copy">
+                <p class="mc-show-kicker">Module Control</p>
+                <h1 class="mc-show-title">{{ $module['name'] }} Module</h1>
+                <p class="mc-show-subtitle">
+                    Database metadata, dependencies, developer information and activation controls.
+                </p>
+            </div>
+
+            <div class="mc-show-side">
+                <div class="mc-show-actions">
+                    <span class="mc-show-icon" aria-hidden="true">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+
+                    <span class="mc-show-divider" aria-hidden="true"></span>
+
+                    <a href="{{ route('modules.control.index') }}" wire:navigate class="mc-show-back">
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        {{ __('Back to Module Control') }}
+                    </a>
                 </div>
 
-                <div>
-                    <div class="mc-hero-action-row">
-                        <span class="mc-hero-action-icon">
-                            <i class="fa-solid fa-chart-line text-xl" aria-hidden="true"></i>
-                        </span>
-
-                        <span class="mc-hero-action-divider" aria-hidden="true"></span>
-
-                        <a href="{{ route('modules.control.index') }}" wire:navigate class="mc-back-button">
-                            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                            <span>{{ __('Back to Module Control') }}</span>
-                        </a>
-                    </div>
-
-                    <div class="mc-mini-status" style="margin-top: 1rem;">
-                        <div class="mc-mini-status-grid">
-                            <div class="mc-mini-status-cell">
-                                <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-300">Status</div>
-                                <div class="mt-2 text-xl font-black {{ $module['enabled'] ? 'text-emerald-300' : 'text-red-300' }}">
-                                    {{ $module['enabled'] ? 'Enabled' : 'Disabled' }}
-                                </div>
+                <div class="mc-show-status-panel" aria-label="Module status summary">
+                    <div class="mc-show-status-grid">
+                        <div class="mc-show-stat">
+                            <div class="mc-show-stat-label">Status</div>
+                            <div class="mc-show-stat-value {{ $module['enabled'] ? 'is-enabled' : 'is-disabled' }}">
+                                {{ $module['enabled'] ? 'Enabled' : 'Disabled' }}
                             </div>
-                            <div class="mc-mini-status-cell">
-                                <div class="text-xs font-black uppercase tracking-[0.18em] text-slate-300">Requires</div>
-                                <div class="mt-2 text-xl font-black text-white">{{ count($module['requires']) }}</div>
-                            </div>
+                        </div>
+
+                        <div class="mc-show-stat">
+                            <div class="mc-show-stat-label">Requires</div>
+                            <div class="mc-show-stat-value">{{ count($module['requires']) }}</div>
                         </div>
                     </div>
                 </div>
