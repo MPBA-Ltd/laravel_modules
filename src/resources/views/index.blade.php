@@ -1,4 +1,4 @@
-@include('modules-control::partials.layout-open', ['title' => 'Module Control'])
+<x-layouts.app :title="__('Module Control')">
     <x-dynamic-component
         :component="config('modules.admin.hero_component', 'wms.page-hero')"
         title="Module Control"
@@ -90,4 +90,4 @@
             </table>
         </div>
     </div>
-@include('modules-control::partials.layout-close')
+</x-layouts.app>
