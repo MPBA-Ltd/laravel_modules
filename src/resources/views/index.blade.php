@@ -1,44 +1,42 @@
 <x-layouts.app :title="__('Module Control')">
-    <section class="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 shadow-sm">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(34,211,238,0.22),transparent_32%),radial-gradient(circle_at_75%_80%,rgba(16,185,129,0.16),transparent_30%)]"></div>
-        <div class="relative grid gap-6 px-6 py-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center lg:py-7 xl:grid-cols-[minmax(0,1fr)_24rem]">
+    <section class="overflow-hidden rounded-[1.75rem] border border-blue-400/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-2xl shadow-slate-950/30 sm:p-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,36rem)] lg:items-start">
             <div class="min-w-0">
-                <p class="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">{{ __('Platform Administration') }}</p>
-                <h1 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">{{ __('Module Control') }}</h1>
-                <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-200 sm:text-base">
+                <p class="text-xs font-black uppercase tracking-[0.35em] text-cyan-300">{{ __('Platform Administration') }}</p>
+                <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ __('Module Control') }}</h1>
+                <p class="mt-6 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
                     {{ __('Manage installed modules, database metadata, dependencies and activation state.') }}
                 </p>
             </div>
 
-            <div class="hidden lg:block">
-                <div class="relative ml-auto max-w-sm rounded-2xl border border-white/10 bg-white/[0.08] p-4 shadow-2xl shadow-slate-950/40 ring-1 ring-white/10 backdrop-blur">
-                    <div class="flex items-center justify-between gap-3">
-                        <span class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-300/25">
-                            <i class="fa-solid fa-puzzle-piece text-2xl" aria-hidden="true"></i>
-                        </span>
-                        <span class="rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.16em] text-cyan-100 ring-1 ring-white/10">
-                            {{ __('Database backed') }}
-                        </span>
+            <div class="rounded-3xl border border-white/35 bg-white/[0.04] p-6 shadow-2xl shadow-slate-950/30 backdrop-blur">
+                <div class="flex items-start justify-between gap-4">
+                    <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+                        <i class="fa-solid fa-puzzle-piece text-3xl" aria-hidden="true"></i>
                     </div>
 
-                    <div class="mt-5 grid grid-cols-3 gap-3">
-                        <div class="rounded-xl border border-white/10 bg-slate-950/40 p-3">
-                            <div class="text-2xl font-black text-white">{{ $stats['installed'] }}</div>
-                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-slate-300">{{ __('Installed') }}</div>
-                        </div>
-                        <div class="rounded-xl border border-emerald-300/20 bg-emerald-500/10 p-3">
-                            <div class="text-2xl font-black text-emerald-100">{{ $stats['enabled'] }}</div>
-                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-emerald-200/90">{{ __('Enabled') }}</div>
-                        </div>
-                        <div class="rounded-xl border border-red-300/20 bg-red-500/10 p-3">
-                            <div class="text-2xl font-black text-red-100">{{ $stats['disabled'] }}</div>
-                            <div class="mt-1 text-[0.65rem] font-bold uppercase tracking-wide text-red-200/90">{{ __('Disabled') }}</div>
-                        </div>
-                    </div>
+                    <span class="rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-white shadow-sm">
+                        {{ __('Database backed') }}
+                    </span>
+                </div>
 
-                    <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
-                        <div class="h-full rounded-full bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-400" style="width: {{ $stats['installed'] > 0 ? round(($stats['enabled'] / max(1, $stats['installed'])) * 100) : 0 }}%"></div>
+                <div class="mt-8 grid grid-cols-3 divide-x divide-white/15">
+                    <div class="pr-5">
+                        <div class="text-4xl font-black text-white">{{ $stats['installed'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100">{{ __('Installed') }}</div>
                     </div>
+                    <div class="px-5">
+                        <div class="text-4xl font-black text-emerald-300">{{ $stats['enabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100">{{ __('Enabled') }}</div>
+                    </div>
+                    <div class="pl-5">
+                        <div class="text-4xl font-black text-red-300">{{ $stats['disabled'] }}</div>
+                        <div class="mt-2 text-xs font-black uppercase tracking-wide text-blue-100">{{ __('Disabled') }}</div>
+                    </div>
+                </div>
+
+                <div class="mt-7 h-3 rounded-full bg-white/10">
+                    <div class="h-3 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-300" style="width: {{ $stats['installed'] > 0 ? round(($stats['enabled'] / max($stats['installed'], 1)) * 100) : 0 }}%"></div>
                 </div>
             </div>
         </div>
@@ -206,7 +204,7 @@
 
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                             @forelse ($modules as $module)
-                                <tr class="align-top transition hover:bg-zinc-900/40">
+                                <tr class="align-top transition hover:bg-zinc-100/70 dark:hover:bg-zinc-800/35">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
                                     </td>
@@ -259,7 +257,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/40">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-400/50">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable

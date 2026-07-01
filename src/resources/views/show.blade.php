@@ -1,45 +1,40 @@
 <x-layouts.app :title="$module['name'].' Module'">
-    <section class="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 shadow-sm">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(34,211,238,0.22),transparent_32%),radial-gradient(circle_at_75%_80%,rgba(16,185,129,0.16),transparent_30%)]"></div>
-        <div class="relative grid gap-6 px-6 py-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:py-7 xl:grid-cols-[minmax(0,1fr)_26rem]">
+    <section class="overflow-hidden rounded-[1.75rem] border border-blue-400/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-2xl shadow-slate-950/30 sm:p-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(28rem,38rem)] lg:items-start">
             <div class="min-w-0">
-                <p class="text-xs font-black uppercase tracking-[0.28em] text-cyan-200">{{ __('Module Control') }}</p>
-                <h1 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">{{ $module['name'] }} {{ __('Module') }}</h1>
-                <p class="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-200 sm:text-base">
+                <p class="text-xs font-black uppercase tracking-[0.35em] text-cyan-300">{{ __('Module Control') }}</p>
+                <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} {{ __('Module') }}</h1>
+                <p class="mt-6 max-w-3xl text-lg font-semibold leading-8 text-blue-50/90">
                     {{ __('Database metadata, dependencies, developer information and activation controls.') }}
                 </p>
             </div>
 
-            <div class="flex flex-col gap-4 lg:items-end">
-                <a href="{{ route('modules.control.index') }}" wire:navigate
-                   class="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-black text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-300/30 transition hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/70 sm:w-auto">
-                    <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
-                    <span>{{ __('Back to Module Control') }}</span>
-                </a>
-
-                <div class="hidden w-full max-w-sm rounded-2xl border border-white/10 bg-white/[0.08] p-4 shadow-2xl shadow-slate-950/40 ring-1 ring-white/10 backdrop-blur lg:block">
-                    <div class="flex items-start justify-between gap-4">
-                        <span class="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-300/25">
-                            <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-3xl" aria-hidden="true"></i>
-                        </span>
-
-                        <div class="min-w-0 text-right">
-                            <p class="text-[0.65rem] font-black uppercase tracking-[0.16em] text-cyan-100">{{ __('Profile') }}</p>
-                            <p class="mt-1 truncate text-lg font-black text-white">{{ $module['alias'] ?: $module['name'] }}</p>
-                            <p class="mt-1 text-xs font-semibold text-slate-300">{{ $module['version'] ?: __('No version set') }}</p>
-                        </div>
+            <div class="space-y-6 lg:pt-1">
+                <div class="flex items-center justify-end gap-6">
+                    <div class="inline-flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-emerald-300/70 bg-emerald-400/10 text-emerald-200 shadow-sm">
+                        <i class="fa-solid {{ $module['icon'] ?: 'fa-chart-line' }} text-3xl" aria-hidden="true"></i>
                     </div>
 
-                    <div class="mt-4 grid grid-cols-2 gap-3">
-                        <div class="rounded-xl border border-white/10 bg-slate-950/40 p-3">
-                            <div class="text-[0.65rem] font-bold uppercase tracking-wide text-slate-300">{{ __('Status') }}</div>
-                            <div class="mt-1 text-sm font-black {{ $module['enabled'] ? 'text-emerald-200' : 'text-red-200' }}">
+                    <div class="hidden h-16 w-px bg-white/15 sm:block"></div>
+
+                    <a href="{{ route('modules.control.index') }}" wire:navigate
+                       class="inline-flex min-h-16 items-center justify-center gap-3 rounded-2xl border border-emerald-400/60 bg-emerald-600/90 px-7 py-4 text-sm font-black text-white shadow-lg shadow-slate-950/20 transition hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+                        <i class="fa-solid fa-arrow-left text-sm" aria-hidden="true"></i>
+                        {{ __('Back to Module Control') }}
+                    </a>
+                </div>
+
+                <div class="rounded-3xl border border-white/35 bg-white/[0.04] p-6 shadow-2xl shadow-slate-950/30 backdrop-blur">
+                    <div class="grid grid-cols-2 divide-x divide-white/15">
+                        <div class="pr-6">
+                            <div class="text-xs font-black uppercase tracking-[0.2em] text-blue-100">{{ __('Status') }}</div>
+                            <div class="mt-3 text-2xl font-black {{ $module['enabled'] ? 'text-emerald-300' : 'text-red-300' }}">
                                 {{ $module['enabled'] ? __('Enabled') : __('Disabled') }}
                             </div>
                         </div>
-                        <div class="rounded-xl border border-white/10 bg-slate-950/40 p-3">
-                            <div class="text-[0.65rem] font-bold uppercase tracking-wide text-slate-300">{{ __('Requires') }}</div>
-                            <div class="mt-1 text-sm font-black text-white">{{ count($module['requires']) }}</div>
+                        <div class="pl-6">
+                            <div class="text-xs font-black uppercase tracking-[0.2em] text-blue-100">{{ __('Requires') }}</div>
+                            <div class="mt-3 text-2xl font-black text-white">{{ count($module['requires']) }}</div>
                         </div>
                     </div>
                 </div>
