@@ -39,6 +39,46 @@
             @endif
         @endforeach
 
+        <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <div class="grid gap-0 lg:grid-cols-[minmax(0,1fr)_22rem]">
+                <div class="p-5 sm:p-6">
+                    <p class="text-[0.68rem] font-black uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300">Module operations</p>
+                    <h2 class="mt-2 text-xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-100">Runtime control centre</h2>
+                    <p class="mt-2 max-w-3xl text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                        Search, filter and safely manage database-backed module activation without changing module.json metadata on disk.
+                    </p>
+
+                    <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-xl border border-blue-500/20 bg-blue-500/10 px-3 py-2 text-sm font-semibold text-blue-700 dark:text-blue-200">
+                            <i class="fa-solid fa-database mr-2" aria-hidden="true"></i>
+                            Database state
+                        </div>
+                        <div class="rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-sm font-semibold text-emerald-700 dark:text-emerald-200">
+                            <i class="fa-solid fa-shield-halved mr-2" aria-hidden="true"></i>
+                            Safe toggles
+                        </div>
+                        <div class="rounded-xl border border-violet-500/20 bg-violet-500/10 px-3 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
+                            <i class="fa-solid fa-code-branch mr-2" aria-hidden="true"></i>
+                            Dependency view
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden min-h-48 overflow-hidden border-l border-zinc-200 bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-900 dark:border-zinc-800 lg:block">
+                    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(34,211,238,.55), transparent 28%), radial-gradient(circle at 80% 30%, rgba(59,130,246,.45), transparent 26%), radial-gradient(circle at 50% 85%, rgba(16,185,129,.35), transparent 30%);"></div>
+                    <div class="relative flex h-full items-center justify-center p-6">
+                        <div class="grid grid-cols-3 gap-3">
+                            @foreach (['fa-puzzle-piece', 'fa-database', 'fa-toggle-on', 'fa-code-branch', 'fa-shield-halved', 'fa-chart-simple'] as $graphicIcon)
+                                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/20 shadow-xl backdrop-blur">
+                                    <i class="fa-solid {{ $graphicIcon }} text-xl" aria-hidden="true"></i>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             @foreach ($filterCards as $card)
                 <a
