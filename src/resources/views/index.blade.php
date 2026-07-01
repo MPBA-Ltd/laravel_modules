@@ -167,7 +167,7 @@
 
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
                             @forelse ($modules as $module)
-                                <tr class="align-top bg-transparent text-zinc-900 transition hover:!bg-zinc-100/70 dark:text-zinc-100 dark:hover:!bg-zinc-800/40">
+                                <tr class="align-top transition hover:!bg-zinc-900/40 dark:hover:!bg-zinc-900/40">
                                     <td class="px-4 py-4">
                                         <input type="checkbox" name="modules[]" value="{{ $module['name'] }}" class="rounded border-zinc-300 text-blue-600 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950" />
                                     </td>
@@ -220,7 +220,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm font-semibold text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:!bg-zinc-800">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-zinc-700 bg-zinc-950/40 px-3 py-1.5 text-sm font-semibold text-zinc-100 transition hover:!border-blue-500/60 hover:!bg-blue-500/10 hover:!text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable
