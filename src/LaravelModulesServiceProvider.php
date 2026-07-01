@@ -15,7 +15,21 @@ class LaravelModulesServiceProvider extends ModulesServiceProvider
     {
         $this->registerNamespaces();
         $this->registerModules();
+
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'modules-control');
+
+        $this->publishes([
+            __DIR__.'/database/migrations' => database_path('migrations'),
+        ], 'modules-migrations');
+
+        $this->publishes([
+            __DIR__.'/Database/Seeders' => database_path('seeders/vendor/modules'),
+        ], 'modules-seeders');
+
+        if ($this->app['config']->get('modules.admin.enabled', true)) {
+            $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        }
     }
 
     /**
@@ -26,6 +40,8 @@ class LaravelModulesServiceProvider extends ModulesServiceProvider
         $this->registerServices();
         $this->setupStubPath();
         $this->registerProviders();
+
+        $this->app->singleton(\mpba\Modules\Support\DatabaseModuleRegistry::class);
     }
 
     /**

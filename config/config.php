@@ -220,4 +220,21 @@ return [
     ],
 
     'activator' => 'database',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Module control admin UI
+    |--------------------------------------------------------------------------
+    |
+    | These settings control the package-provided module management screens.
+    | The UI uses the database activator and the module_statuses table.
+    |
+    */
+    'admin' => [
+        'enabled' => true,
+        'prefix' => 'admin/modules',
+        'middleware' => ['web', 'auth'],
+        'layout_component' => 'layouts.app',
+        'hero_component' => 'wms.page-hero',
+    ],
 ];
