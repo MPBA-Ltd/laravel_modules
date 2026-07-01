@@ -1,15 +1,25 @@
 <x-layouts.app :title="$module['name'].' Module'">
-    <x-dynamic-component
-        :component="config('modules.admin.hero_component', 'wms.page-hero')"
-        :title="$module['name'].' Module'"
-        subtitle="Database metadata, dependencies, developer information and activation controls."
-    />
+    <div class="overflow-hidden rounded-[1.75rem] border border-zinc-800 bg-gradient-to-r from-slate-950 via-blue-950 to-cyan-700 px-6 py-8 shadow-sm sm:px-8 lg:px-10">
+        <div class="flex items-center justify-between gap-8">
+            <div class="min-w-0">
+                <p class="text-[0.72rem] font-black uppercase tracking-[0.32em] text-cyan-300">Module Control</p>
+                <h1 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">{{ $module['name'] }} Module</h1>
+                <p class="mt-4 max-w-3xl text-base font-medium leading-7 text-slate-200 sm:text-lg">
+                    Database metadata, dependencies, developer information and activation controls.
+                </p>
 
-    <div class="mt-4 flex justify-end">
-        <a href="{{ route('modules.control.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-800 shadow-sm transition hover:border-blue-500/50 hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-blue-500/60 dark:hover:bg-blue-500/10 dark:hover:text-white">
-            <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
-            Back to Module Control
-        </a>
+                <a href="{{ route('modules.control.index') }}" wire:navigate class="mt-5 inline-flex items-center justify-center rounded-xl bg-white/15 px-4 py-2 text-sm font-bold text-white ring-1 ring-white/20 shadow-sm transition hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/40">
+                    <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
+                    Back to Module Control
+                </a>
+            </div>
+
+            <div class="hidden shrink-0 lg:flex">
+                <span class="inline-flex h-24 w-24 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-white/15 shadow-sm backdrop-blur">
+                    <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-4xl" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
     </div>
 
     @php
@@ -30,44 +40,6 @@
                 </div>
             @endif
         @endforeach
-
-        <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div class="grid gap-0 lg:grid-cols-[minmax(0,1fr)_20rem]">
-                <div class="p-5 sm:p-6">
-                    <div class="flex items-start gap-4">
-                        <span class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-700 shadow-sm dark:text-blue-300">
-                            <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-xl" aria-hidden="true"></i>
-                        </span>
-                        <div class="min-w-0">
-                            <p class="text-[0.68rem] font-black uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300">Module profile</p>
-                            <h2 class="mt-1 text-xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-100">{{ $module['name'] }} control overview</h2>
-                            <p class="mt-2 max-w-3xl text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                                Review database-only metadata, activation state, dependencies, developer files and documentation for this module.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative hidden min-h-40 overflow-hidden border-l border-zinc-200 bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 dark:border-zinc-800 lg:block">
-                    <div class="absolute inset-0 opacity-35" style="background-image: radial-gradient(circle at 30% 25%, rgba(34,211,238,.55), transparent 28%), radial-gradient(circle at 72% 70%, rgba(16,185,129,.45), transparent 30%);"></div>
-                    <div class="relative flex h-full items-center justify-center p-6">
-                        <div class="flex items-center gap-3">
-                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/20 shadow-xl backdrop-blur">
-                                <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-xl" aria-hidden="true"></i>
-                            </div>
-                            <div class="h-px w-10 bg-white/30"></div>
-                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/20 shadow-xl backdrop-blur">
-                                <i class="fa-solid fa-database" aria-hidden="true"></i>
-                            </div>
-                            <div class="h-px w-10 bg-white/30"></div>
-                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/20 shadow-xl backdrop-blur">
-                                <i class="fa-solid {{ $module['enabled'] ? 'fa-toggle-on' : 'fa-toggle-off' }}" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="grid gap-4 lg:grid-cols-4">
             <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
