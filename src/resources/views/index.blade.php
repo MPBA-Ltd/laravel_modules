@@ -29,211 +29,263 @@
     @endphp
 
     <style>
+        .mc-shell {
+            --mc-card: rgb(24 24 27);
+            --mc-card-soft: rgb(39 39 42 / .55);
+            --mc-border: rgb(63 63 70);
+            --mc-muted: rgb(161 161 170);
+            --mc-white: rgb(244 244 245);
+            --mc-emerald: rgb(52 211 153);
+            --mc-blue: rgb(96 165 250);
+            --mc-red: rgb(252 165 165);
+        }
         .mc-hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(26rem, 34rem);
-            align-items: center;
-            gap: 2rem;
             overflow: hidden;
-            border-radius: 1.15rem;
-            border: 1px solid rgba(45, 79, 137, .72);
-            background:
-                radial-gradient(circle at 26% 18%, rgba(20, 184, 166, .18), transparent 31%),
-                linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
-            padding: 1.25rem 2rem;
-            box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
-        }
-
-        .mc-hero-kicker {
-            margin: 0 0 .55rem;
-            color: #5ef7d0;
-            font-size: .66rem;
-            font-weight: 900;
-            letter-spacing: .28em;
-            text-transform: uppercase;
-        }
-
-        .mc-hero-title {
-            margin: 0;
+            border-radius: 1.5rem;
+            border: 1px solid rgb(63 63 70);
+            background: linear-gradient(135deg, #020617 0%, #0f172a 45%, #172554 100%);
             color: #fff;
-            font-size: clamp(1.9rem, 3vw, 2.75rem);
-            font-weight: 950;
-            letter-spacing: -.045em;
-            line-height: .98;
+            box-shadow: 0 1px 2px rgb(0 0 0 / .35);
         }
-
-        .mc-hero-subtitle {
-            margin: .7rem 0 0;
-            max-width: 42rem;
-            color: rgba(241, 245, 249, .9);
-            font-size: clamp(.92rem, 1.25vw, 1.05rem);
+        .mc-hero-inner {
+            padding: 1.75rem 1.5rem;
+        }
+        @media (min-width: 1024px) {
+            .mc-hero-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.5rem;
+            }
+        }
+        .mc-hero-eyebrow {
+            font-size: .75rem;
+            line-height: 1rem;
             font-weight: 700;
-            line-height: 1.42;
+            text-transform: uppercase;
+            letter-spacing: .28em;
+            color: rgb(191 219 254);
         }
-
-        .mc-hero-metric-panel {
-            justify-self: end;
-            width: min(100%, 33.5rem);
-            border-radius: 1.15rem;
-            border: 1px solid rgba(148, 163, 184, .28);
-            background: rgba(2, 6, 23, .36);
-            padding: .9rem 1.05rem;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 34px rgba(0,0,0,.22);
+        .mc-hero-title {
+            margin-top: .5rem;
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 650;
+            letter-spacing: -.025em;
+            color: white;
         }
-
-        .mc-hero-metric-top {
+        .mc-hero-copy {
+            margin-top: .5rem;
+            max-width: 48rem;
+            font-size: .875rem;
+            line-height: 1.55rem;
+            color: rgb(219 234 254 / .9);
+        }
+        .mc-hero-panel {
+            width: min(100%, 28rem);
+            margin-top: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgb(255 255 255 / .16);
+            background: rgb(15 23 42 / .52);
+            padding: 1rem;
+        }
+        @media (min-width: 1024px) {
+            .mc-hero-panel { margin-top: 0; }
+        }
+        .mc-hero-topline {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
-            gap: 1.25rem;
-            margin-bottom: .85rem;
+            gap: 1rem;
         }
-
         .mc-hero-icon {
             display: inline-flex;
             height: 3rem;
             width: 3rem;
             align-items: center;
             justify-content: center;
-            border-radius: .85rem;
-            border: 1px solid rgba(94, 234, 212, .58);
-            background: rgba(20, 184, 166, .12);
-            color: #a7f3d0;
-            font-size: 1.08rem;
+            border-radius: .875rem;
+            border: 1px solid rgb(52 211 153 / .65);
+            background: rgb(52 211 153 / .12);
+            color: rgb(167 243 208);
+            box-shadow: inset 0 1px 0 rgb(255 255 255 / .08);
         }
-
         .mc-hero-pill {
             display: inline-flex;
             align-items: center;
-            border-radius: 999px;
-            border: 1px solid rgba(226, 232, 240, .35);
-            background: rgba(255,255,255,.08);
-            padding: .45rem .9rem;
-            color: rgba(248, 250, 252, .94);
-            font-size: .66rem;
-            font-weight: 950;
-            letter-spacing: .2em;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 1px solid rgb(255 255 255 / .2);
+            background: rgb(255 255 255 / .08);
+            padding: .45rem .95rem;
+            font-size: .7rem;
+            font-weight: 900;
+            letter-spacing: .18em;
             text-transform: uppercase;
+            color: rgb(241 245 249);
             white-space: nowrap;
         }
-
-        .mc-hero-metrics {
+        .mc-hero-stats {
+            margin-top: 1.25rem;
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-
-        .mc-hero-metric {
-            padding: .15rem 1.15rem;
-            border-left: 1px solid rgba(226, 232, 240, .25);
+        .mc-hero-stat {
+            padding: 0 .85rem;
+            border-left: 1px solid rgb(255 255 255 / .16);
         }
-
-        .mc-hero-metric:first-child {
+        .mc-hero-stat:first-child {
             border-left: 0;
             padding-left: 0;
         }
-
-        .mc-hero-metric-number {
-            color: #fff;
-            font-size: 1.9rem;
-            font-weight: 950;
-            line-height: 1;
+        .mc-hero-stat-value {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 900;
+            color: white;
         }
-
-        .mc-hero-metric-number.is-enabled { color: #5ef7b7; }
-        .mc-hero-metric-number.is-disabled { color: #fb7185; }
-
-        .mc-hero-metric-label {
-            margin-top: .35rem;
-            color: rgba(226, 232, 240, .92);
+        .mc-hero-stat-label {
+            margin-top: .15rem;
             font-size: .7rem;
-            font-weight: 950;
-            letter-spacing: .04em;
+            font-weight: 900;
+            letter-spacing: .06em;
             text-transform: uppercase;
+            color: rgb(226 232 240);
         }
-
-        .mc-row,
-        .mc-row:hover,
-        .mc-row:focus-within,
-        .mc-row *:not(a):not(button):not(input):not(select) {
-            color: inherit;
+        .mc-hero-action-row {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
         }
-
-        .mc-row {
-            background: rgba(24, 24, 27, .72) !important;
+        @media (min-width: 1024px) {
+            .mc-hero-action-row { margin-top: 0; justify-content: flex-end; }
         }
-
-        .mc-row:hover,
-        .mc-row:focus-within {
-            background: linear-gradient(90deg, rgba(24, 24, 27, .96), rgba(8, 22, 42, .82)) !important;
-        }
-
-        .mc-view-button,
-        .mc-view-button:visited {
+        .mc-hero-action-icon {
             display: inline-flex;
+            height: 3.25rem;
+            width: 3.25rem;
             align-items: center;
             justify-content: center;
-            border-radius: .75rem;
-            border: 1px solid rgba(16,185,129,.58) !important;
-            background: #059669 !important;
-            color: #fff !important;
-            font-weight: 850;
-            box-shadow: 0 10px 20px rgba(5, 150, 105, .18);
+            border-radius: 1rem;
+            border: 1px solid rgb(52 211 153 / .55);
+            background: rgb(52 211 153 / .10);
+            color: rgb(110 231 183);
         }
-
+        .mc-hero-action-divider {
+            height: 3.25rem;
+            width: 1px;
+            background: rgb(255 255 255 / .18);
+        }
+        .mc-back-button,
+        .mc-back-button:visited {
+            display: inline-flex;
+            min-height: 3.25rem;
+            align-items: center;
+            justify-content: center;
+            gap: .7rem;
+            border-radius: .9rem;
+            border: 1px solid rgb(52 211 153 / .55);
+            background: rgb(16 185 129 / .08) !important;
+            padding: .75rem 1.6rem;
+            color: rgb(52 211 153) !important;
+            font-size: .875rem;
+            font-weight: 900;
+            text-decoration: none !important;
+            box-shadow: none !important;
+            transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+            white-space: nowrap;
+        }
+        .mc-back-button:hover,
+        .mc-back-button:focus {
+            background: rgb(16 185 129 / .16) !important;
+            border-color: rgb(110 231 183 / .8) !important;
+            color: rgb(167 243 208) !important;
+            transform: translateY(-1px);
+        }
+        .mc-mini-status {
+            width: min(100%, 28rem);
+            border-radius: 1rem;
+            border: 1px solid rgb(255 255 255 / .14);
+            background: rgb(15 23 42 / .45);
+            padding: 1rem;
+        }
+        .mc-mini-status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .mc-mini-status-cell {
+            padding: 0 1rem;
+            border-left: 1px solid rgb(255 255 255 / .16);
+        }
+        .mc-mini-status-cell:first-child { border-left: 0; padding-left: 0; }
+        .mc-row,
+        .mc-row:hover,
+        .mc-row:focus-within {
+            background: rgb(24 24 27 / 0.68) !important;
+            color: inherit !important;
+        }
+        .mc-row:hover {
+            background: rgb(39 39 42 / 0.72) !important;
+        }
+        .mc-view-button,
+        .mc-view-button:hover,
+        .mc-view-button:focus,
+        .mc-view-button:visited {
+            background: rgb(22 163 74) !important;
+            border-color: rgb(34 197 94 / 0.65) !important;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
         .mc-view-button:hover,
         .mc-view-button:focus {
-            border-color: rgba(110,231,183,.72) !important;
-            background: #047857 !important;
+            background: rgb(21 128 61) !important;
             color: #fff !important;
-            outline: none;
         }
-
-        @media (max-width: 1100px) {
-            .mc-hero { grid-template-columns: 1fr; }
-            .mc-hero-metric-panel { justify-self: stretch; width: 100%; }
+        .mc-safe-button:hover,
+        .mc-safe-button:focus {
+            color: #fff !important;
         }
-
-        @media (max-width: 640px) {
-            .mc-hero { padding: 1.05rem; }
-            .mc-hero-metric-panel { padding: .9rem; }
-            .mc-hero-metric { padding-inline: .8rem; }
-            .mc-hero-metric-number { font-size: 1.75rem; }
+        .mc-shell table a:hover,
+        .mc-shell table button:hover {
+            color: #fff !important;
         }
     </style>
 
-    <div class="space-y-6">
+    <div class="mc-shell space-y-6">
         <section class="mc-hero">
-            <div class="mc-hero-copy">
-                <p class="mc-hero-kicker">Platform Administration</p>
-                <h1 class="mc-hero-title">Module Control</h1>
-                <p class="mc-hero-subtitle">
-                    Manage installed modules, database metadata, dependencies and activation state.
-                </p>
-            </div>
-
-            <div class="mc-hero-metric-panel" aria-label="Module control summary">
-                <div class="mc-hero-metric-top">
-                    <span class="mc-hero-icon">
-                        <i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
-                    </span>
-
-                    <span class="mc-hero-pill">Database backed</span>
+            <div class="mc-hero-inner">
+                <div>
+                    <p class="mc-hero-eyebrow">Platform Administration</p>
+                    <h1 class="mc-hero-title">Module Control</h1>
+                    <p class="mc-hero-copy">
+                        Manage installed modules, database metadata, dependencies and activation state.
+                    </p>
                 </div>
 
-                <div class="mc-hero-metrics">
-                    <div class="mc-hero-metric">
-                        <div class="mc-hero-metric-number">{{ $installedCount }}</div>
-                        <div class="mc-hero-metric-label">Installed</div>
+                <div class="mc-hero-panel" aria-label="Module status summary">
+                    <div class="mc-hero-topline">
+                        <span class="mc-hero-icon">
+                            <i class="fa-solid fa-puzzle-piece text-xl" aria-hidden="true"></i>
+                        </span>
+
+                        <span class="mc-hero-pill">Database backed</span>
                     </div>
 
-                    <div class="mc-hero-metric">
-                        <div class="mc-hero-metric-number is-enabled">{{ $enabledCount }}</div>
-                        <div class="mc-hero-metric-label">Enabled</div>
-                    </div>
-
-                    <div class="mc-hero-metric">
-                        <div class="mc-hero-metric-number is-disabled">{{ $disabledCount }}</div>
-                        <div class="mc-hero-metric-label">Disabled</div>
+                    <div class="mc-hero-stats">
+                        <div class="mc-hero-stat">
+                            <div class="mc-hero-stat-value">{{ $installedCount }}</div>
+                            <div class="mc-hero-stat-label">Installed</div>
+                        </div>
+                        <div class="mc-hero-stat">
+                            <div class="mc-hero-stat-value" style="color: rgb(110 231 183);">{{ $enabledCount }}</div>
+                            <div class="mc-hero-stat-label">Enabled</div>
+                        </div>
+                        <div class="mc-hero-stat">
+                            <div class="mc-hero-stat-value" style="color: rgb(252 165 165);">{{ $disabledCount }}</div>
+                            <div class="mc-hero-stat-label">Disabled</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -430,11 +482,11 @@
                                         <div class="flex justify-end gap-2">
                                             <a href="{{ route('modules.control.show', $module['name']) }}" class="mc-view-button rounded-lg border px-3 py-1.5 text-sm font-semibold shadow-sm">View</a>
                                             @if ($module['enabled'])
-                                                <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50" @disabled(! $module['can_disable'])>
+                                                <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="mc-safe-button rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50" @disabled(! $module['can_disable'])>
                                                     Disable
                                                 </button>
                                             @else
-                                                <button type="submit" formaction="{{ route('modules.control.enable', $module['name']) }}" class="rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700">
+                                                <button type="submit" formaction="{{ route('modules.control.enable', $module['name']) }}" class="mc-safe-button rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700">
                                                     Enable
                                                 </button>
                                             @endif
