@@ -1,4 +1,10 @@
 <x-layouts.app :title="$module['name'].' Module'">
+    <style>
+        details.modules-control-disclosure:not([open]) .modules-control-chevron-down { display: none !important; }
+        details.modules-control-disclosure:not([open]) .modules-control-chevron-right { display: inline-block !important; }
+        details.modules-control-disclosure[open] .modules-control-chevron-right { display: none !important; }
+        details.modules-control-disclosure[open] .modules-control-chevron-down { display: inline-block !important; }
+    </style>
     <x-dynamic-component
         :component="config('modules.admin.hero_component', 'wms.page-hero')"
         :title="$module['name'].' Module'"
@@ -183,15 +189,15 @@
                     </div>
                 </div>
 
-                <details class="group rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                <details class="group modules-control-disclosure rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden">
                         <div>
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer files</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Routes, migrations, models, controllers and providers discovered for this module.</p>
                         </div>
-                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-emerald-500/25 text-white shadow-sm ring-1 ring-white/10 transition group-hover:bg-emerald-500/35 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right text-xl group-open:hidden"></i>
-                            <i class="fa-solid fa-chevron-down hidden text-xl group-open:inline"></i>
+                        <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
                         </span>
                     </summary>
 
@@ -217,15 +223,15 @@
                 </details>
 
                 <div class="grid gap-6 lg:grid-cols-2">
-                    <details class="group rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                    <details class="group modules-control-disclosure rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                         <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden">
                             <div>
                                 <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">README preview</h2>
                                 <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Open to inspect the module README where available.</p>
                             </div>
-                            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-emerald-500/25 text-white shadow-sm ring-1 ring-white/10 transition group-hover:bg-emerald-500/35 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right text-xl group-open:hidden"></i>
-                            <i class="fa-solid fa-chevron-down hidden text-xl group-open:inline"></i>
+                            <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
                         </span>
                         </summary>
 
@@ -242,15 +248,15 @@
             </div>
 
             <aside class="space-y-6">
-                <details class="group rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                <details class="group modules-control-disclosure rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden">
                         <div>
                             <h2 class="text-lg font-semibold text-zinc-950 dark:text-zinc-100">Developer information</h2>
                             <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Path, namespace, composer, git and database metadata.</p>
                         </div>
-                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-emerald-500/25 text-white shadow-sm ring-1 ring-white/10 transition group-hover:bg-emerald-500/35 dark:bg-emerald-500/25 dark:group-hover:bg-emerald-500/35" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-right text-xl group-open:hidden"></i>
-                            <i class="fa-solid fa-chevron-down hidden text-xl group-open:inline"></i>
+                        <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] border border-emerald-300/20 bg-emerald-700 text-white shadow-lg shadow-emerald-950/20 ring-1 ring-white/10 transition hover:bg-emerald-600" aria-hidden="true">
+                            <i class="fa-solid fa-chevron-right modules-control-chevron-right text-2xl"></i>
+                            <i class="fa-solid fa-chevron-down modules-control-chevron-down text-2xl"></i>
                         </span>
                     </summary>
 
