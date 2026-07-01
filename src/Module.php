@@ -135,7 +135,7 @@ abstract class Module
      */
     public function getRequires(): array
     {
-        return $this->get('requires');
+        return $this->json('requires') ?? [];
     }
 
     /**
