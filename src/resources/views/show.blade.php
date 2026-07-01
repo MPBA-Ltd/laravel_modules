@@ -7,7 +7,7 @@
 
     <div class="space-y-6">
         @if (session('status'))
-            <div class="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-800 dark:border-green-900/60 dark:bg-green-950/40 dark:text-green-200">
+            <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-800 dark:text-emerald-200">
                 {{ session('status') }}
             </div>
         @endif
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="flex flex-wrap gap-3">
-                        <button type="submit" class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+                        <button type="submit" class="rounded-xl border border-blue-500/40 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                             Save Database Metadata
                         </button>
 
@@ -73,9 +73,9 @@
 
                 <div class="mt-4">
                     @if ($module['enabled'])
-                        <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 dark:bg-green-900/40 dark:text-green-200">Enabled</span>
+                        <span class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">Enabled</span>
                     @else
-                        <span class="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700 dark:bg-red-900/40 dark:text-red-200">Disabled</span>
+                        <span class="rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-300">Disabled</span>
                     @endif
                 </div>
 
@@ -83,14 +83,14 @@
                     @if ($module['enabled'])
                         <form method="POST" action="{{ route('modules.control.disable', $module['name']) }}">
                             @csrf
-                            <button type="submit" class="w-full rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">
+                            <button type="submit" class="w-full rounded-xl border border-red-500/40 bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500/30">
                                 Disable Module
                             </button>
                         </form>
                     @else
                         <form method="POST" action="{{ route('modules.control.enable', $module['name']) }}">
                             @csrf
-                            <button type="submit" class="w-full rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+                            <button type="submit" class="w-full rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
                                 Enable Module
                             </button>
                         </form>

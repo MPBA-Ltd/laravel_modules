@@ -12,7 +12,7 @@
 
     <div class="space-y-6">
         @if (session('status'))
-            <div class="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-800 dark:border-green-900/60 dark:bg-green-950/40 dark:text-green-200">
+            <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-800 dark:text-emerald-200">
                 {{ session('status') }}
             </div>
         @endif
@@ -23,14 +23,14 @@
                 <div class="mt-2 text-3xl font-bold text-zinc-900 dark:text-zinc-100">{{ $modules->count() }}</div>
             </div>
 
-            <div class="rounded-2xl border border-green-200 bg-green-50 p-5 shadow-sm dark:border-green-900/60 dark:bg-green-950/30">
-                <div class="text-xs font-semibold uppercase tracking-wide text-green-700 dark:text-green-300">Enabled</div>
-                <div class="mt-2 text-3xl font-bold text-green-800 dark:text-green-100">{{ $enabledCount }}</div>
+            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                <div class="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Enabled</div>
+                <div class="mt-2 text-3xl font-bold text-emerald-700 dark:text-emerald-300">{{ $enabledCount }}</div>
             </div>
 
-            <div class="rounded-2xl border border-red-200 bg-red-50 p-5 shadow-sm dark:border-red-900/60 dark:bg-red-950/30">
+            <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                 <div class="text-xs font-semibold uppercase tracking-wide text-red-700 dark:text-red-300">Disabled</div>
-                <div class="mt-2 text-3xl font-bold text-red-800 dark:text-red-100">{{ $disabledCount }}</div>
+                <div class="mt-2 text-3xl font-bold text-red-700 dark:text-red-300">{{ $disabledCount }}</div>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
 
         <div class="grid gap-4 xl:grid-cols-2">
             @forelse ($modules as $module)
-                <article class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
+                <article class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700">
                     <div class="flex items-start justify-between gap-4">
                         <div class="min-w-0">
                             <div class="flex flex-wrap items-center gap-2">
@@ -61,11 +61,11 @@
                                 </h3>
 
                                 @if ($module['enabled'])
-                                    <span class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700 dark:bg-green-900/40 dark:text-green-200">
+                                    <span class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
                                         Enabled
                                     </span>
                                 @else
-                                    <span class="rounded-full bg-red-100 px-2.5 py-1 text-xs font-semibold text-red-700 dark:bg-red-900/40 dark:text-red-200">
+                                    <span class="rounded-full border border-red-500/30 bg-red-500/10 px-2.5 py-1 text-xs font-semibold text-red-700 dark:text-red-300">
                                         Disabled
                                     </span>
                                 @endif
@@ -118,14 +118,14 @@
                         @if ($module['enabled'])
                             <form method="POST" action="{{ route('modules.control.disable', $module['name']) }}">
                                 @csrf
-                                <button type="submit" class="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">
+                                <button type="submit" class="rounded-xl border border-red-500/40 bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500/30">
                                     Disable
                                 </button>
                             </form>
                         @else
                             <form method="POST" action="{{ route('modules.control.enable', $module['name']) }}">
                                 @csrf
-                                <button type="submit" class="rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+                                <button type="submit" class="rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
                                     Enable
                                 </button>
                             </form>
