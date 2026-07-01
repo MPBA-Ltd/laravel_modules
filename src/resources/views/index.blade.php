@@ -33,19 +33,19 @@
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(28rem, 37rem);
             align-items: center;
-            gap: 3.5rem;
+            gap: 2.6rem;
             overflow: hidden;
             border-radius: 1.5rem;
             border: 1px solid rgba(45, 79, 137, .72);
             background:
                 radial-gradient(circle at 26% 18%, rgba(20, 184, 166, .18), transparent 31%),
                 linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
-            padding: 2.6rem 2.8rem;
+            padding: 1.9rem 2.4rem;
             box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
 
         .mc-hero-kicker {
-            margin: 0 0 1.25rem;
+            margin: 0 0 .85rem;
             color: #5ef7d0;
             font-size: .82rem;
             font-weight: 900;
@@ -56,17 +56,17 @@
         .mc-hero-title {
             margin: 0;
             color: #fff;
-            font-size: clamp(2.35rem, 4vw, 4.15rem);
+            font-size: clamp(2.15rem, 3.4vw, 3.35rem);
             font-weight: 950;
             letter-spacing: -.045em;
             line-height: .98;
         }
 
         .mc-hero-subtitle {
-            margin: 1.3rem 0 0;
+            margin: .95rem 0 0;
             max-width: 42rem;
             color: rgba(241, 245, 249, .9);
-            font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+            font-size: clamp(1rem, 1.45vw, 1.2rem);
             font-weight: 700;
             line-height: 1.5;
         }
@@ -77,7 +77,7 @@
             border-radius: 1.35rem;
             border: 1px solid rgba(148, 163, 184, .28);
             background: rgba(2, 6, 23, .36);
-            padding: 1.5rem 1.7rem;
+            padding: 1.15rem 1.35rem;
             box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 34px rgba(0,0,0,.22);
         }
 
@@ -86,20 +86,20 @@
             align-items: flex-start;
             justify-content: space-between;
             gap: 1.25rem;
-            margin-bottom: 1.9rem;
+            margin-bottom: 1.35rem;
         }
 
         .mc-hero-icon {
             display: inline-flex;
-            height: 4.25rem;
-            width: 4.25rem;
+            height: 3.55rem;
+            width: 3.55rem;
             align-items: center;
             justify-content: center;
             border-radius: 1rem;
             border: 1px solid rgba(94, 234, 212, .58);
             background: rgba(20, 184, 166, .12);
             color: #a7f3d0;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
         }
 
         .mc-hero-pill {
@@ -134,7 +134,7 @@
 
         .mc-hero-metric-number {
             color: #fff;
-            font-size: 2.55rem;
+            font-size: 2.15rem;
             font-weight: 950;
             line-height: 1;
         }
@@ -143,7 +143,7 @@
         .mc-hero-metric-number.is-disabled { color: #fb7185; }
 
         .mc-hero-metric-label {
-            margin-top: .6rem;
+            margin-top: .45rem;
             color: rgba(226, 232, 240, .92);
             font-size: .78rem;
             font-weight: 950;
@@ -194,7 +194,7 @@
         }
 
         @media (max-width: 640px) {
-            .mc-hero { padding: 1.6rem; }
+            .mc-hero { padding: 1.35rem; }
             .mc-hero-metric-panel { padding: 1.2rem; }
             .mc-hero-metric { padding-inline: .8rem; }
             .mc-hero-metric-number { font-size: 2rem; }

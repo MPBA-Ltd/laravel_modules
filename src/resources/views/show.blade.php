@@ -14,19 +14,19 @@
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(29rem, 38rem);
             align-items: start;
-            gap: 3.5rem;
+            gap: 2.6rem;
             overflow: hidden;
             border-radius: 1.5rem;
             border: 1px solid rgba(45, 79, 137, .72);
             background:
                 radial-gradient(circle at 24% 18%, rgba(20, 184, 166, .16), transparent 32%),
                 linear-gradient(135deg, #071023 0%, #10245f 58%, #07111f 100%);
-            padding: 2.55rem 2.8rem;
+            padding: 1.9rem 2.4rem;
             box-shadow: 0 22px 55px rgba(0, 0, 0, .28);
         }
 
         .mc-show-kicker {
-            margin: 0 0 1.25rem;
+            margin: 0 0 .85rem;
             color: #5ef7d0;
             font-size: .82rem;
             font-weight: 950;
@@ -37,17 +37,17 @@
         .mc-show-title {
             margin: 0;
             color: #fff;
-            font-size: clamp(2.3rem, 3.8vw, 3.9rem);
+            font-size: clamp(2.1rem, 3.3vw, 3.25rem);
             font-weight: 950;
             letter-spacing: -.045em;
             line-height: .98;
         }
 
         .mc-show-subtitle {
-            margin: 1.3rem 0 0;
+            margin: .95rem 0 0;
             max-width: 41rem;
             color: rgba(241, 245, 249, .9);
-            font-size: clamp(1.05rem, 1.6vw, 1.32rem);
+            font-size: clamp(1rem, 1.45vw, 1.18rem);
             font-weight: 700;
             line-height: 1.5;
         }
@@ -66,19 +66,19 @@
 
         .mc-show-icon {
             display: inline-flex;
-            height: 4.25rem;
-            width: 4.25rem;
+            height: 3.55rem;
+            width: 3.55rem;
             align-items: center;
             justify-content: center;
             border-radius: 1rem;
             border: 1px solid rgba(94, 234, 212, .58);
             background: rgba(20, 184, 166, .10);
             color: #a7f3d0;
-            font-size: 1.75rem;
+            font-size: 1.3rem;
         }
 
         .mc-show-divider {
-            height: 4.25rem;
+            height: 3.55rem;
             width: 1px;
             background: rgba(226, 232, 240, .22);
         }
@@ -86,8 +86,8 @@
         .mc-show-back,
         .mc-show-back:visited {
             display: inline-flex;
-            min-height: 4.25rem;
-            min-width: 20rem;
+            min-height: 3.55rem;
+            min-width: 18rem;
             align-items: center;
             justify-content: center;
             gap: 1rem;
@@ -95,7 +95,7 @@
             border: 1px solid rgba(16, 185, 129, .62);
             background: rgba(5, 150, 105, .06);
             color: #5ef7b7;
-            font-size: 1.02rem;
+            font-size: .95rem;
             font-weight: 950;
             text-decoration: none;
             transition: background .15s ease, border-color .15s ease, color .15s ease;
@@ -110,11 +110,11 @@
         }
 
         .mc-show-status-panel {
-            margin-top: 1.75rem;
+            margin-top: 1.35rem;
             border-radius: 1.25rem;
             border: 1px solid rgba(148, 163, 184, .26);
             background: rgba(2, 6, 23, .28);
-            padding: 1.35rem 1.55rem;
+            padding: 1.1rem 1.35rem;
             box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 14px 28px rgba(0,0,0,.18);
         }
 
@@ -144,7 +144,7 @@
         .mc-show-stat-value {
             margin-top: .65rem;
             color: #fff;
-            font-size: 1.45rem;
+            font-size: 1.3rem;
             font-weight: 950;
             line-height: 1;
         }
