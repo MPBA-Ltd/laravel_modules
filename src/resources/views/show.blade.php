@@ -8,16 +8,24 @@
                     Database metadata, dependencies, developer information and activation controls.
                 </p>
 
-                <a href="{{ route('modules.control.index') }}" wire:navigate class="mt-5 inline-flex items-center justify-center rounded-xl bg-white/15 px-4 py-2 text-sm font-bold text-white ring-1 ring-white/20 shadow-sm transition hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/40">
+            </div>
+
+            <div class="hidden shrink-0 lg:flex lg:flex-col lg:items-end lg:gap-4">
+                <a href="{{ route('modules.control.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-emerald-400 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
                     <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
                     Back to Module Control
                 </a>
-            </div>
 
-            <div class="hidden shrink-0 lg:flex">
                 <span class="inline-flex h-24 w-24 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-white/15 shadow-sm backdrop-blur">
                     <i class="fa-solid {{ $module['icon'] ?: 'fa-puzzle-piece' }} text-4xl" aria-hidden="true"></i>
                 </span>
+            </div>
+
+            <div class="mt-5 flex lg:hidden">
+                <a href="{{ route('modules.control.index') }}" wire:navigate class="inline-flex items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:border-emerald-400 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
+                    <i class="fa-solid fa-arrow-left mr-2 text-xs" aria-hidden="true"></i>
+                    Back to Module Control
+                </a>
             </div>
         </div>
     </div>

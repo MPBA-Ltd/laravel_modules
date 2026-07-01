@@ -232,7 +232,7 @@
                                     </td>
                                     <td class="px-4 py-4">
                                         <div class="flex justify-end gap-2">
-                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm font-semibold text-zinc-800 shadow-sm transition hover:!border-blue-500/60 hover:!bg-blue-50 hover:!text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-zinc-700 dark:bg-zinc-950/40 dark:text-zinc-100 dark:hover:!border-blue-500/60 dark:hover:!bg-blue-500/10 dark:hover:!text-white">View</a>
+                                            <a href="{{ route('modules.control.show', $module['name']) }}" class="inline-flex items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:border-emerald-400 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400/40 dark:border-emerald-500/40 dark:bg-emerald-600 dark:text-white dark:hover:border-emerald-400 dark:hover:bg-emerald-500 dark:hover:text-white">View</a>
                                             @if ($module['enabled'])
                                                 <button type="submit" formaction="{{ route('modules.control.disable', $module['name']) }}" class="rounded-lg border border-red-500/40 bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-700" @disabled(! $module['can_disable'])>
                                                     Disable
