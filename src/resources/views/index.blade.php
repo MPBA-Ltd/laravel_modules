@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Module Control')">
+<x-layouts::app :title="__('Module Control')">
     @php
         $installedCount = (int) ($stats['installed'] ?? 0);
         $enabledCount = (int) ($stats['enabled'] ?? 0);
@@ -462,4 +462,4 @@
             {{ $modules->links() }}
         </div>
     </div>
-</x-layouts.app>
+</x-layouts::app>

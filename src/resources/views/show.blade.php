@@ -1,4 +1,4 @@
-<x-layouts.app :title="$module['name'].' Module'">
+<x-layouts::app :title="$module['name'].' Module'">
     @php
         $fileGroups = [
             'Routes' => $module['routes'] ?? [],
@@ -462,4 +462,4 @@
             </aside>
         </div>
     </div>
-</x-layouts.app>
+</x-layouts::app>
